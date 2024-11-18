@@ -1,0 +1,2745 @@
+
+/*---------------------------------------------------header---------------------------------------------------------------*/
+
+
+header {
+    background-color: #f5f2ec;
+    padding: 10px 20px; /* Padding around the header */
+}
+
+.header-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between logo, name, and buttons */
+    align-items: center; /* Center items vertically */
+}
+
+.logo-container {
+    flex: 0 0 auto; /* Keep logo at its original size */
+}
+
+.logo {
+    height: 50px; /* Set height for the logo */
+}
+
+.website-name-container {
+    flex-grow: 1; /* Allow website name to take available space */
+    text-align: center; /* Center website name */
+}
+
+
+.website-name-image {
+    height: 70px; /* Set height for website name image */
+}
+
+.header-buttons {
+    display: flex; /* Align buttons in a row */
+    align-items: center; /* Center buttons vertically */
+}
+
+.download-button, .login-button {
+    background-color: #d1cebc;
+    color: white; /* White text */
+    padding: 10px 15px; /* Padding for button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    margin-right: 15px; /* Space between buttons */
+    cursor: pointer;
+}
+
+.login-container , .profile-container {
+    position: relative; /* Positioning for dropdown */
+}
+
+
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute; /* Absolute positioning */
+    background-color: #ede7d5;
+    min-width: 160px; /* Minimum width */
+    right: 0; /* Align dropdown to the right side of the login button */
+    z-index: 1; /* Ensure dropdown is on top */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px;
+}
+
+.login-container:hover .dropdown-content , .profile-container:hover .dropdown-content {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown-content a {
+    color: white; /* White color for dropdown links */
+    padding: 12px 12px; /* Padding for dropdown items */
+    text-decoration: none; /* No underline */
+    display: block; /* Block display */
+}
+
+.dropdown-content a:hover {
+    background-color: #b6a895;
+}
+
+/* Style for the profile avatar */
+.profile-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+
+
+/*--------------------------------------------------footer------------------------------------------------------------------*/
+
+
+.footer_container {
+    display: flex;
+    background-color: #334a4e; /* Footer background color */
+    color: white; /* Text color */
+    width: 100%; /* Ensure the footer takes full width of the viewport */
+    box-sizing: border-box; /* Include padding and borders in the element’s width */
+    flex-wrap: wrap; /* Allow the columns to wrap on smaller screens */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.col {
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.col.col1 {
+    flex: 0 0 40%;
+}
+
+.col.col2, .col.col3 {
+    flex: 0 0 30%;
+}
+
+.col.col3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.heading {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.about p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.moreInformation {
+    margin-bottom: 20px;
+}
+
+.keepInTouch {
+    margin-top: 20px;
+}
+
+.socialBox {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.socialBox li {
+    margin-right: 10px;
+}
+
+.copyRight {
+    text-align: center;
+    margin-top: 0;
+    color: white;
+    background-color: #556a6d;
+    padding: 10px 0;
+    width: 100%; /* Make sure copyright section spans the full width */
+}
+
+
+
+.connectWithUs li {
+    margin-bottom: 15px; /* Space between each item in Connect With Us */
+}
+
+.footer_container a {
+    color: white; /* Change hyperlink color to white */
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Optional: To add a hover effect */
+.footer_container a:hover {
+    text-decoration: underline; /* Optional: underline on hover */
+}
+
+
+
+
+/*------------------------------------------------slide_images---------------------------------------------------------------*/
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.image-slider {
+    position: relative;
+    width: 100%; /* Set a max-width for the slider */
+    margin: auto;
+    overflow: hidden; /* Hide overflow */
+}
+
+.slider-container {
+    display: flex;
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.slide {
+    min-width: 100%; /* Make each slide full-width */
+    display: none; /* Hide slides by default */
+}
+
+.slide.active {
+    display: block; /* Show the active slide */
+}
+
+
+.slide img {
+    width: 100%;
+    height: 700px; /* Set your desired height */
+}
+
+
+
+/* ----------------------------------------------parallel boxes-------------------------------------------------------*/
+
+.image-container {
+    position: relative; /* Allows absolute positioning of child elements */
+    width: 100%; /* Full width of the parent container */
+    height: 600px; /* Set your desired height */
+    overflow: hidden; /* Ensures no overflow */
+}
+
+.background-image {
+    width: 100%; /* Set width to 100% to fill the container */
+    height: 100%; /* Set height to fill the container */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+}
+
+.parallel-boxes {
+    display: flex; /* Use flexbox for layout */
+    position: absolute; /* Position them over the background image */
+    top: 0; /* Align to the top of the parent */
+    left: 0; /* Align to the left of the parent */
+    width: 100%; /* Full width of the parent */
+    height: 100%; /* Full height of the parent */
+}
+
+.left-container {
+    flex: 0 0 50%; /* Left container takes half of the parent */
+    display: flex; /* Flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.left-box {
+    width: 70%; /* Width of the left box */
+    height: 80%;
+    padding: 20px; /* Padding inside the box */
+    border-radius: 20px 0 20px 0; /* Rounded corners */
+    background-color: rgba(237, 231, 213, 0.4); /* Semi-transparent teal color */
+    text-align: center; /* Center text horizontally */
+    color: white; /* Text color for better contrast */
+    display: flex; /* Flexbox for the inner boxes */
+    flex-direction: column; /* Stack boxes vertically */
+    justify-content: center; /* Center inner boxes vertically */
+}
+
+.right-container {
+    flex: 0 0 50%; /* Right container takes half of the parent */
+    display: flex; /* Flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.right-box {
+    width: 70%; /* Width of the right box */
+    height: 80%; 
+    padding: 20px; /* Padding inside the box */
+    border-radius: 0 20px 0 20px; /* Rounded corners */
+    background-color: rgba(209, 206, 188, 0.3); /* Semi-transparent dark red color */
+    color: #4b2f1b; /* Text color */
+    text-align: center; /* Center text horizontally */
+    font-family: 'american typewriter' , serif; /* Change the font family */
+    font-weight: bold;
+    font-size: 25px; /* Change the font size */
+    line-height: 2.0; /* Adjust line height for better readability */
+    display: flex; /* Flexbox for centering */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+}
+
+/* Optional: Adjust the inner boxes in the left box */
+.box {
+    background-color: rgba(182, 168, 149, 0.7); /* Semi-transparent light grey color */
+    margin: 20px 0; /* Margin between boxes */
+    padding: 15px; /* Padding inside each box */
+    border-radius: 0 20px 0 20px; /* Rounded corners */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition effects */
+    width: 90%; /* Set to fill the parent container */
+    height: 60px; /* Set a specific height */
+    color: #4b2f1b; /* Text color */
+    text-align: center; /* Center align text */
+    line-height: 1.5; /* Adjust line height for spacing */
+}
+
+.box:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Box shadow on hover */
+}
+
+.services-title {
+    text-align: center; /* Center the title text */
+    color: #4b2f1b; /* Title color */
+    font-size: 48px; /* Font size for the title */
+    margin-bottom: 0; /* Space between the title and boxes */
+    margin-top: 5px;
+    position: relative; /* Allows for more control over positioning */
+    z-index: 1; /* Ensure title is above other content */
+    font-family: 'brush script mt', cursive; /* Font style for the title */
+}
+
+
+
+.buy-sell {
+    font-family: 'brush script mt' , cursive; /* Font style for Buy/Sell House */
+    font-size: 48px; /* Font size for Buy/Sell House */
+}
+
+.rent-share {
+    font-family: 'brush script mt' , cursive; /* Font style for Rent/Co-sharing Flat */
+    font-size: 48px; /* Font size for Rent/Co-sharing Flat */
+}
+
+.house-services {
+    font-family: 'brush script mt' , cursive; /* Font style for House Services */
+    font-size: 48px; /* Font size for House Services */
+}
+
+
+
+#message {
+    transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+    opacity: 1; /* Start fully visible */
+}
+
+
+
+
+
+
+
+/*-----------------------------------------life_style------------------------------------------------------------------------*/
+
+
+
+
+
+.lifestyle-section {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust the height as needed */
+    overflow: hidden;
+}
+
+.lifestyle-image {
+    width: 100%; /* Makes the image stretch to fit the full width of the container */
+    height: 100%; /* Makes the image stretch to fit the full height of the container */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    position: absolute; /* Positions the image behind the text */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensures the image stays behind the text content */
+}
+
+.text-content {
+    position: relative;
+    padding: 20px; /* Adds some padding around the text */
+    z-index: 1; /* Ensures the text is above the image */
+    display: flex;
+    flex-direction: column; /* Stacks the title and description vertically */
+    align-items: flex-start; /* Aligns the text to the start (left) */
+    max-width: 60%;
+}
+
+.lifestyle-title {
+    font-family: 'Bradley Hand', cursive; /* Font style for the title */
+    font-size: 2.5em; /* Font size for the title */
+    color: #000; /* Text color for the title */
+    margin-top: 180px;
+}
+
+.lifestyle-description {
+    font-family: 'palatino', serif; /* Font style for the description */
+    font-size: 1.2em; /* Font size for the description */
+    color: #1f202e; /* Text color with some opacity for the description */
+    margin-top: 10px; /* Adds space above the description */
+}
+
+
+
+
+/*-----------------------------------------------commitment_box--------------------------------------------------------------*/
+
+
+
+
+.commitment-section {
+    display: flex;                /* Use flexbox for layout */
+    justify-content: space-between; /* Distribute space evenly between boxes */
+    align-items: center;          /* Center items vertically */
+    height: 500px;               /* Set section height */
+    background-color: #d1cebc;     /* White background */
+    padding: 20px;               /* Padding around the section */
+}
+
+.commitment-box {
+    flex: 1;                     /* Each box takes equal space */
+    margin: 0 10px;             /* Space between boxes */
+    padding: 20px;              /* Padding inside each box */
+    border-radius: 10px;        /* Rounded corners */
+    text-align: center;         /* Center text */
+    background-color: transparent; /* No visible background color */
+}
+
+.icon {
+    height: 60px;               /* Set icon height */
+    width: 60px;                /* Set icon width */
+    margin-bottom: 10px;        /* Space between icon and text */
+}
+
+.commitment-title {
+    font-size: 1.25rem;         /* Font size for title */
+    font-weight: bold;          /* Bold text */
+    margin-bottom: 5px;         /* Space between title and text */
+}
+
+.commitment-text {
+    font-size: 1rem;            /* Font size for text */
+    color: #555;                /* Text color */
+    opacity: 0.7;               /* Slightly transparent */
+}
+
+
+
+
+
+/*------------------------------------------------key_metrices---------------------------------------------------------------*/
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.section-background {
+    background-color: #ede7d5; /* Example background color */
+    padding: 50px 0; /* Padding around the section */
+}
+
+.content-container {
+    display: flex; /* Flexbox layout for horizontal alignment */
+    justify-content: space-between; /* Space between the two boxes */
+    align-items: center; /* Vertically center the boxes */
+    max-width: 1200px; /* Limit the width of the content */
+    margin: 0 auto; /* Center the content on the page */
+    padding: 0 20px; /* Padding inside the content container */
+}
+
+.image-box {
+    width: 45%; /* Width of the image box */
+}
+
+.stats-image {
+    width: 100%; /* Make the image fill the box */
+    height: auto; /* Maintain the image aspect ratio */
+    object-fit: contain; /* Ensure the image fits inside the container without distortion */
+}
+
+.stats-box {
+    display: grid; /* Use grid layout */
+    grid-template-columns: 1fr 1fr; /* Two columns for stats */
+    grid-template-rows: auto auto; /* Two rows for stats */
+    gap: 80px; /* Space between the grid items */
+    width: 45%; /* Width of the stats box */
+    justify-items: center; /* Center the stat items horizontally */
+    align-items: center; /* Center the stat items vertically */
+}
+
+.stat-item {
+    text-align: center; /* Center align the text */
+}
+
+.stat-value {
+    font-size: 2rem; /* Font size for the numbers */
+    font-weight: bold; /* Make the numbers bold */
+}
+
+.stat-label {
+    font-size: 1rem; /* Font size for the labels */
+    color: #555; /* Gray color for the labels */
+}
+
+
+
+
+/*------------------------------------------------find_your_tribe----------------------------------------------------------*/
+
+
+
+.fyt_body {
+    height: 500px; /* Set the container height */
+    display: flex;
+    background-color: #f5f2ec;
+    justify-content: center;
+    align-items: center;
+}
+
+.fyt_container {
+    display: flex;
+    flex-direction: row; /* Arrange text and image horizontally */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+
+.fyt_text {
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.fyt_text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.fyt_text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.fyt_button {
+    background-color: #805050;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fyt_button:hover {
+    background-color: #0056b3;
+}
+
+.fyt_image img {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 20px;
+}
+
+
+
+
+
+/*------------------------------------------------live_your_way--------------------------------------------------------------*/
+
+
+.lyw_container {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Set height to 600px */
+    background-color: #d1cebc;
+    overflow: hidden; /* Hide overflow to maintain rounded corners */
+    display: flex; /* Use flexbox to center align */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.lyw_content {
+    width: 100%; /* Set a smaller width (e.g., 90% of the container) */
+    height: 550px; /* Height of the content */
+    position: relative; /* Ensure it's positioned relative for inner elements */
+    display: flex; /* Use flexbox for inner content */
+    justify-content: center; /* Center align */
+    align-items: center; /* Center vertically */
+}
+
+.lyw_image {
+    width: 100%; /* Set width to 100% to stretch across the container */
+    height: 500px; /* Set height to 400px for the image */
+    border-radius: 60px; /* Rounded corners */
+    object-fit: cover; /* Ensure the image covers the container */
+}
+
+
+.lyw_text {
+    position: absolute; /* Position text absolutely */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    color: rgba(255, 255, 255, 0.8); /* Change text color as needed */
+    text-align: center; /* Center text */
+    z-index: 1; /* Ensure text is above the image */
+    padding: 10px; /* Add some padding around the text */
+    border-radius: 10px; /* Optional: rounded corners for the background */
+}
+
+
+.lyw_title {
+    font-size: 72px; /* Change the font size as needed */
+    font-weight: bold; /* Change the font weight as needed */
+    font-family: 'american typewriter', serif; /* Set the font family */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional: Adds shadow for better visibility */
+}
+
+
+
+
+
+/*---------------------------------------------download_mobileapp------------------------------------------------------------*/
+
+
+
+
+.dmp_app_download_outer {
+    width: 100%; /* Full width of the screen */
+    height: 550px; /* Total height of the container */
+    background-color: #b6a895;
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center the row vertically */
+}
+
+.dmp_app_download_box {
+    width: 100%; /* Full width for the box */
+    display: flex; /* Use flexbox for inner layout */
+}
+
+.dmp_container {
+    width: 100%; /* Full width for the container */
+    display: flex; /* Use flexbox for row alignment */
+    height: 100%; /* Take full height */
+}
+
+.dmp_row {
+    display: flex; /* Use flexbox for row alignment */
+    width: 100%; /* Full width for the row */
+}
+
+.dmp_col_left, .dmp_col_right {
+    flex: 1; /* Allow both columns to take equal space */
+    height: 500px; /* Set height for both columns */
+    display: flex; /* Use flexbox for inner content */
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.dmp_title {
+    font-size: 32px; /* Adjust the title size */
+    text-align: center; /* Center the title */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+.dmp_description {
+    font-size: 18px; /* Adjust the description size */
+    text-align: center; /* Center the description */
+    margin-bottom: 20px; /* Space below the description */
+}
+
+.dmp_store_links {
+    display: flex; /* Align images horizontally */
+    justify-content: center; /* Center store images */
+}
+
+.dmp_store_image {
+    width: 100px; /* Set a fixed size for store images */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 10px; /* Space between images */
+}
+
+.dmp_col_right {
+    overflow: hidden; /* Hide overflow */
+}
+
+.dmp_background_image {
+    width: 100%; /* Stretch the image to fill the container */
+    height: 100%; /* Stretch the image to fill the container */
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+}
+
+
+
+
+
+
+/*----------------------------------------------terms_and_conditions---------------------------------------------------------*/
+
+
+
+
+.tandc_body {
+    padding: 20px;
+}
+
+.tandc_main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background-color: #F3EEEA; /* Light background for readability */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tandc_h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.tandc_h2 {
+    font-size: 24px;
+    margin-top: 30px;
+}
+
+.tandc_h3 {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.tandc_p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.tandc_ul {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+/*------------------------------------------------privacy_policy-------------------------------------------------------------*/
+
+
+
+
+.pp_main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background-color: #F3EEEA; /* Light background for readability */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pp_title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #776B5D; /* Title color */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.pp_effective_date {
+    font-size: 16px;
+    color: #B0A695; /* Effective date color */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pp_intro,
+.pp_section_text,
+.pp_contact_info {
+    font-size: 16px;
+    color: #4D4D4D; /* Text color */
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.pp_section_title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #776B5D; /* Section title color */
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.pp_subsection_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #B0A695; /* Subsection title color */
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.pp_list {
+    list-style-type: disc; /* Bullet points for lists */
+    padding-left: 20px; /* Indent for list items */
+}
+
+.pp_list li {
+    margin-bottom: 8px; /* Space between list items */
+}
+
+
+
+
+
+
+/*------------------------------------------------about_us---------------------------------------------------------------*/
+
+
+
+.about_us_image {
+    display: block;
+    width: 100%; /* Full width */
+    height: 500px; /* Fixed height */
+    object-fit: cover; /* Ensure the image covers the space without stretching */
+}
+
+.about_us_section {
+    display: flex;
+    margin: 20px; /* Added margin for left and right */
+}
+
+.about_us_text {
+    width: 60%; /* Left box width */
+    padding: 0 20px; /* Padding for left and right */
+}
+
+.about_us_image_container {
+    width: 40%; /* Right box width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about_us_right_image {
+    max-width: 100%;
+    height: auto; /* Fit in the box */
+}
+
+.founders_section {
+    text-align: center;
+    margin: 40px 0; /* Space between sections */
+}
+
+.founders_heading {
+    font-size: 2em; /* Large text */
+    margin-bottom: 20px;
+}
+
+.founders_images {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between founder images */
+}
+
+.founder_image {
+    width: 150px; /* Adjust the size */
+    height: 150px; /* Adjust the size */
+    border-radius: 50%; /* Make circular */
+}
+
+.founders_message {
+    width: 60%;
+    margin: 30px auto; /* Center the message */
+    text-align: center;
+}
+
+.map_section {
+    margin: 40px 0; /* Space above and below */
+    text-align: center;
+}
+
+.find_us_heading {
+    font-size: 2em; /* Large text */
+    margin-bottom: 20px; /* Space below */
+}
+
+.map_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Space below the map */
+}
+
+.contact_info {
+    text-align: center; /* Center contact info */
+}
+
+/* To easily change text styles and sizes */
+.about_us_text h2,
+.about_us_text h3,
+.find_us_heading,
+.founders_heading {
+    font-size: var(--heading-size, 2em); /* Change heading size */
+    color: var(--heading-color, #776b5d); /* Change heading color */
+}
+
+.about_us_text p {
+    font-size: var(--paragraph-size, 1.1em); /* Change paragraph size */
+    color: var(--paragraph-color, #4b2f1b); /* Change paragraph color */
+    font-family: 'american typewriter' , serif; /* Change the font family */
+}
+
+
+
+
+
+/*------------------------------------------------admin_login---------------------------------------------------------------*/
+
+
+.admin_wrapper {
+    position: relative;
+    width: 100%;
+    height: auto; /* Allow height to adjust based on content */
+}
+
+.image_container {
+    width: 100%; /* Match the full width */
+    margin: 0 auto; /* Center the wrapper */
+}
+
+.admin_bg {
+    width: 100%;
+    height: 800px; /* Maintain aspect ratio */
+    display: block; /* Ensure no extra space below */
+}
+
+.admin_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px; /* Width of the admin container */
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    color: #fff;
+    border-radius: 12px;
+    padding: 30px 40px; /* Padding for the admin container */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+.admin_input-box {
+    position: relative;
+    width: 98%; /* Make the input box take full width of the admin container */
+    margin: 20px 0; /* Add vertical margin for spacing */
+}
+
+.admin_input-box input {
+    width: 90%; /* Ensure the input takes the full width of the input box */
+    height: 50px; /* Maintain height */
+    background: transparent; /* Transparent background */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Border style */
+    border-radius: 40px; /* Rounded corners */
+    font-size: 20px; /* Font size */
+    color: #fff; /* Text color */
+    padding: 15px 20px; /* Padding for the input field */
+    outline: none; /* Remove outline on focus */
+    text-align: center;
+}
+
+
+.admin_container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+
+.admin_input-box input::placeholder {
+    color: #fff;
+}
+
+.admin_btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+
+
+
+
+
+/*------------------------------------------------client_login---------------------------------------------------------------*/
+
+
+
+.client_middle-section {
+    background-color: #EDE7DF; /* Set background color to #EDE7DF */
+    padding: 20px; /* Optional: Add padding for better spacing */
+   
+}
+
+.client_container * {
+    margin: 0;
+    padding: 0;
+    color: #4b2f1b;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.client_container {
+    background-color: #d1cebc;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    margin: 40px auto;
+}
+
+.client_container p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+
+.client_social-icons {
+    margin: 20px 0;
+    text-align: center; /* Center the icons */
+}
+
+.client_social-icons a {
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    width: 40px;  /* Set a fixed width */
+    height: 40px; /* Set a fixed height */
+    color: black; /* Set color for visibility */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.client_social-icons img {
+    width: 30px;   /* Set the width of the SVG image */
+    height: 30px;  /* Set the height of the SVG image */
+}
+
+.client_social-icons a:hover {
+    background-color: #e0e0e0; /* Add hover effect */
+}
+        
+.icon {
+    font-size: 24px; /* Adjust the size as needed */
+}
+
+
+
+.client_container span {
+    font-size: 12px;
+}
+
+.client_container a {
+    color: #4b2f1b;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.client_container button {
+    background-color: #b6a895;
+    color: #4b2f1b;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.client_container button.client_hidden {
+    background-color: transparent;
+    border-color: #4b2f1b;
+}
+
+.client_container form {
+    background-color: #d1cebc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.client_container input {
+    background-color: #ede7df;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.client_form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.client_sign-in {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.client_container.active .client_sign-in {
+    transform: translateX(100%);
+}
+
+.client_sign-up {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.client_container.active .client_sign-up {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: client_move 0.6s;
+}
+
+@keyframes client_move {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+
+.client_toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.client_container.active .client_toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.client_toggle {
+    background-color: #b6a895;
+    height: 100%;
+    background: linear-gradient;
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.client_container.active .client_toggle {
+    transform: translateX(50%);
+}
+
+.client_toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.client_toggle-left {
+    transform: translateX(-200%);
+}
+
+.client_container.active .client_toggle-left {
+    transform: translateX(0);
+}
+
+.client_toggle-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.client_container.active .client_toggle-right {
+    transform: translateX(200%);
+}
+
+
+
+
+
+/*-------------------------------------------------owner_login-------------------------------------------------------------*/
+
+
+
+
+
+
+
+.owner_middle-section {
+    background-color: #EDE7DF; /* Set background color to #EDE7DF */
+    padding: 20px; /* Optional: Add padding for better spacing */
+}
+
+.owner_container * {
+    margin: 0;
+    padding: 0;
+    color: #4b2f1b;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.owner_container {
+    background-color: #d1cebc;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    margin: 40px auto;
+}
+
+.owner_container p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.owner_social-icons {
+    margin: 20px 0;
+    text-align: center; /* Center the icons */
+}
+
+.owner_social-icons a {
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    width: 40px;  /* Set a fixed width */
+    height: 40px; /* Set a fixed height */
+    color: black; /* Set color for visibility */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.owner_social-icons img {
+    width: 30px;   /* Set the width of the SVG image */
+    height: 30px;  /* Set the height of the SVG image */
+}
+
+.owner_social-icons a:hover {
+    background-color: #e0e0e0; /* Add hover effect */
+}
+
+.icon {
+    font-size: 24px; /* Adjust the size as needed */
+}
+
+.owner_container span {
+    font-size: 12px;
+}
+
+.owner_container a {
+    color: #4b2f1b;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.owner_container button {
+    background-color: #b6a895;
+    color: #4b2f1b;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.owner_container button.owner_hidden {
+    background-color: transparent;
+    border-color: #4b2f1b;
+}
+
+.owner_container form {
+    background-color: #d1cebc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.owner_container input {
+    background-color: #ede7df;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.owner_form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.owner_sign-in {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.owner_container.active .owner_sign-in {
+    transform: translateX(100%);
+}
+
+.owner_sign-up {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.owner_container.active .owner_sign-up {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: owner_move 0.6s;
+}
+
+@keyframes owner_move {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.owner_toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.owner_container.active .owner_toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.owner_toggle {
+    background-color: #b6a895;
+    height: 100%;
+    background: linear-gradient;
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.owner_container.active .owner_toggle {
+    transform: translateX(50%);
+}
+
+.owner_toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.owner_toggle-left {
+    transform: translateX(-200%);
+}
+
+.owner_container.active .owner_toggle-left {
+    transform: translateX(0);
+}
+
+.owner_toggle-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.owner_container.active .owner_toggle-right {
+    transform: translateX(200%);
+}
+
+
+
+
+/*----------------------------------------------buy_sell_main_page----------------------------------------------------------*/
+
+
+
+.buy_sell_body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e7e2d5;
+    color: #776b5d;
+    margin: 0;
+}
+
+.buy_sell_property-section {
+    margin-bottom: 0;
+    opacity: 0; /* Set initially hidden */
+    transition: opacity 1s ease-in-out;
+}
+
+.buy_sell_full-width-image {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+}
+
+.buy_sell_image-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.buy_sell_overlay-text {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 90%; 
+    text-align: center;
+}
+
+.buy_sell_btn-cta {
+    color: #b3641b;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Bradley Hand', cursive;
+    font-size: 38px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buy_sell_btn-cta:hover {
+    background-color: #B0A695;
+    color: #FFFFFF;
+}
+
+/* Fade-in Animation */
+.buy_sell_fade-in {
+    opacity: 1; /* Set to visible */
+}
+
+.buy_sell_text-content {
+    margin: 0 ;
+    padding: 10px 100px 40px; /* Margin along both sides */
+    text-align: center; /* Center align text */
+}
+
+.buy_sell_text-content h2 {
+    font-size: 48px; /* Adjust the font size as needed */
+    font-family: 'brush script mt', cursive;
+    text-align: center; /* Center header text */
+}
+
+.buy_sell_text-content p {
+    font-size: 18px; /* Adjust the paragraph font size */
+    font-family: 'american typewriter', serif;
+    line-height: 1.5; /* Improve readability */
+    text-align: justify; /* Justify text */
+    margin: 0 50px; /* Add margin to paragraphs */
+}
+
+
+
+
+
+/*--------------------------------------------sell_property_form------------------------------------------------------------*/
+
+
+
+
+.sellproperty_body {
+    height: 100%;
+    width: 100%; /* Full width */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative; /* Positioning context for absolute elements */
+}
+
+
+.sellproperty_container {
+    background-image: url('https://ik.imagekit.io/fyhproject/fyhproject_image/sellform.webp?updatedAt=1729407669827');/* Use correct path and name */
+    background-size: cover; /* Ensure the image covers the entire area */
+    background-position: center; /* Center the image */
+    height: 100%; /* Ensure this matches the body height */
+    width: 90%; /* Full width */
+    display: flex; /* Align elements as needed */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+.sellproperty_form {
+    background-color: rgba(255, 255, 255, 0.5); /* Slightly transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    height: auto; /* Adjust as needed; auto will allow it to grow */
+    max-height: 90%; /* Limit max height */
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    position: relative; /* Relative positioning for the form */
+    z-index: 1; /* Ensure the form is above the background image */
+}
+
+.sellproperty_title {
+    text-align: center;
+    color: #4b2f1b;
+    font-family: 'brush script mt', cursive;
+    font-size: 50px;
+}
+
+.sellproperty_input,
+.sellproperty_select,
+.sellproperty_textarea {
+    width: 100%; /* Full width */
+    padding: 10px;
+    margin: 15px 0; /* Margin from top and bottom */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sellproperty_number_container {
+    margin-bottom: 15px;
+}
+
+.sellproperty_number_select {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping */
+    gap: 10px; /* Space between numbers */
+}
+
+.sellproperty_number_select input[type="radio"] {
+    margin-right: 5px; /* Space between radio and label */
+}
+
+.required {
+    color: red; /* Highlight required fields */
+}
+
+.sellproperty_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.sellproperty_button:hover {
+    background-color: #45a049;
+}
+
+
+.custom-label {
+    color: #4b2f1b; /* Text color */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Font weight */
+    font-family: 'Bradley Hand', cursive; /* Font family */
+    margin-bottom: 10px; /* Space below */
+    display: block; /* Block element */
+    
+}
+
+
+
+
+
+/*------------------------------------------buy_property_search_only--------------------------------------------------------*/
+
+
+.buyproperty_body {
+    background-color: #f3eeea;
+}
+
+/* Image section with fixed height and search bar overlay */
+.buyproperty_image_container {
+    background-image: url('https://ik.imagekit.io/fyhproject/fyhproject_image/buyform.webp?updatedAt=1729337432695');
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    position: relative;
+}
+
+.buyproperty_search_overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;  /* Center the container horizontally */
+    transform: translateX(-50%);  /* Offset by 50% of its own width for centering */
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    border-radius: 15px; /* Rounded corners */
+}
+
+
+.search_full_width {
+    width: 98%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.search_row {
+    display: flex;
+    gap: 10px;
+}
+
+.buyproperty_search_select,
+.buyproperty_search_input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.search_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.search_button:hover {
+    background-color: #45a049;
+}
+
+/* Results section styling */
+.buyproperty_results_section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between results */
+    margin-top: 20px; /* Ensure results appear below the image */
+}
+
+.buyproperty_property-container {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    height: 300px; /* Fixed height for all results */
+    opacity: 0.9; /* Set opacity for result containers */
+    background-color: #fff; /* White background for better readability */
+    border-radius: 10px; /* Rounded corners for result containers */
+    overflow: hidden;
+}
+
+.buyproperty_property-image {
+    width: 50%;
+    height: 100%;
+    background-size: cover; /* Cover entire area with image */
+    background-position: center;
+    border-radius: 10px 0 0 10px; /* Rounded corners on the left */
+}
+
+.buyproperty_property-details {
+    padding: 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.buyproperty_property-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.buyproperty_property-title a {
+    color: #3498db; /* Link color */
+    text-decoration: none;
+}
+
+.buyproperty_property-title a:hover {
+    text-decoration: underline;
+}
+
+.buyproperty_property-info {
+    margin-top: 10px;
+}
+
+.buyproperty_modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+}
+
+.buyproperty_modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 10px;
+}
+
+.buyproperty_close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buyproperty_close-button:hover {
+    color: #000;
+}
+
+
+.buyproperty_property-container:hover {
+    transform: scale(1.02);
+}
+
+
+.buyproperty_property-details p {
+    margin: 5px 0;
+}
+
+
+
+
+
+
+/* Modal for property details and input form */
+.buyproperty_modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.buyproperty_modal-content {
+    width: 60%;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 90vh;
+    overflow-y: auto; /* Allows scrolling for longer forms */
+}
+
+.buyproperty_property-form {
+    margin-top: 20px;
+}
+
+.buyproperty_property-form h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.buyproperty_property-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.buyproperty_property-form input,
+.buyproperty_property-form select,
+.buyproperty_property-form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.buyproperty_property-form input[type="file"] {
+    padding: 0;
+}
+
+.buyproperty_property-form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.buyproperty_close-button {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+
+
+
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-container {
+    display: flex; /* Use flexbox for side-by-side layout */
+}
+
+.modal-info {
+    flex: 1; /* Take up equal space on the left */
+    padding: 20px; /* Add some padding */
+}
+
+.modal-images {
+    flex: 1; /* Take up equal space on the right */
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    align-items: center; /* Center images */
+    padding: 20px; /* Add some padding */
+}
+
+.modal-images img {
+    max-width: 100%; /* Ensure images are responsive */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Add space between images */
+}
+
+#modalVideoTour {
+    margin-top: 20px; /* Add some space above the video link */
+}
+
+
+
+
+
+
+/*------------------------------------------rent_coshare_main_page----------------------------------------------------------*/
+
+
+
+
+.rent_coshare_body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e7e2d5;
+    color: #776b5d;
+    margin: 0;
+}
+
+.rent_coshare_property-section {
+    margin-bottom: 0;
+    opacity: 0; /* Set initially hidden */
+    transition: opacity 1s ease-in-out;
+}
+
+.rent_coshare_full-width-image {
+    width: 100%;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.rent_coshare_image-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.rent_coshare_overlay-text {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 90%; 
+    text-align: center;
+}
+
+.rent_coshare_btn-cta {
+    color: #b3641b;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Bradley Hand', cursive;
+    font-size: 38px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.rent_coshare_btn-cta:hover {
+    background-color: #B0A695;
+    color: #FFFFFF;
+}
+
+/* Fade-in Animation */
+.rent_coshare_fade-in {
+    opacity: 1; /* Set to visible */
+}
+
+.rent_coshare_text-content {
+    margin: 0;
+    padding: 10px 100px 40px; /* Margin along both sides */
+    text-align: center; /* Center align text */
+}
+
+.rent_coshare_text-content h2 {
+    font-size: 48px; /* Adjust the font size as needed */
+    font-family: 'brush script mt', cursive;
+    text-align: center; /* Center header text */
+}
+
+.rent_coshare_text-content p {
+    font-size: 18px; /* Adjust the paragraph font size */
+    font-family: 'american typewriter', serif;
+    line-height: 1.5; /* Improve readability */
+    text-align: justify; /* Justify text */
+    margin: 0 50px; /* Add margin to paragraphs */
+}
+
+
+
+
+/*------------------------------------------rent_property_form-------------------------------------------------------*/
+
+
+
+.rentproperty_body {
+    height: 100%;
+    width: 100%; /* Full width */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative; /* Positioning context for absolute elements */
+}
+
+
+.rentproperty_container {
+    background-image: url('https://ik.imagekit.io/fyhproject/fyhproject_image/rentform.webp?updatedAt=1729407670093');/* Use correct path and name */
+    background-size: cover; /* Ensure the image covers the entire area */
+    background-position: center; /* Center the image */
+    height: 100%; /* Ensure this matches the body height */
+    width: 90%; /* Full width */
+    display: flex; /* Align elements as needed */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+.rentproperty_form {
+    background-color: rgba(255, 255, 255, 0.5); /* Slightly transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    height: auto; /* Adjust as needed; auto will allow it to grow */
+    max-height: 90%; /* Limit max height */
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    position: relative; /* Relative positioning for the form */
+    z-index: 1; /* Ensure the form is above the background image */
+}
+
+.rentproperty_title {
+    text-align: center;
+    color: #4b2f1b;
+    font-family: 'brush script mt', cursive;
+    font-size: 50px;
+}
+
+.rentproperty_input,
+.rentproperty_select,
+.rentproperty_textarea {
+    width: 100%; /* Full width */
+    padding: 10px;
+    margin: 15px 0; /* Margin from top and bottom */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.rentproperty_number_container {
+    margin-bottom: 15px;
+}
+
+.rentproperty_number_select {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping */
+    gap: 10px; /* Space between numbers */
+}
+
+.rentproperty_number_select input[type="radio"] {
+    margin-right: 5px; /* Space between radio and label */
+}
+
+.required {
+    color: red; /* Highlight required fields */
+}
+
+.rentproperty_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.rentproperty_button:hover {
+    background-color: #45a049;
+}
+
+
+.custom-label {
+    color: #4b2f1b; /* Text color */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Font weight */
+    font-family: 'Bradley Hand', cursive; /* Font family */
+    margin-bottom: 10px; /* Space below */
+    display: block; /* Block element */
+    
+}
+
+
+
+/*--------------------------------------------for_rent_search_page----------------------------------------------------------*/
+
+
+/* General body and main section styling */
+.for_rent_body {
+    background-color: #f3eeea;
+}
+
+/* Image section with fixed height and search bar overlay */
+.for_rent_image_container {
+    background-image: url('https://ik.imagekit.io/fyhproject/fyhproject_image/for_rent.webp?updatedAt=1729407669375');
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    position: relative;
+}
+
+.for_rent_search_overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;  /* Center the container horizontally */
+    transform: translateX(-50%);  /* Offset by 50% of its own width for centering */
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    border-radius: 15px; /* Rounded corners */
+}
+
+
+.search_full_width {
+    width: 98%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.search_row {
+    display: flex;
+    gap: 10px;
+}
+
+.for_rent_search_select,
+.for_rent_search_input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.search_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.search_button:hover {
+    background-color: #45a049;
+}
+
+/* Results section styling */
+.for_rent_results_section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between results */
+    margin-top: 20px; /* Ensure results appear below the image */
+}
+
+.for_rent_property-container {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    height: 300px; /* Fixed height for all results */
+    opacity: 0.9; /* Set opacity for result containers */
+    background-color: #fff; /* White background for better readability */
+    border-radius: 10px; /* Rounded corners for result containers */
+    overflow: hidden;
+}
+
+.for_rent_property-image {
+    width: 50%;
+    height: 100%;
+    background-size: cover; /* Cover entire area with image */
+    background-position: center;
+    border-radius: 10px 0 0 10px; /* Rounded corners on the left */
+}
+
+.for_rent_property-details {
+    padding: 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.for_rent_property-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.for_rent_property-title a {
+    color: #3498db; /* Link color */
+    text-decoration: none;
+}
+
+.for_rent_property-title a:hover {
+    text-decoration: underline;
+}
+
+.for_rent_property-info {
+    margin-top: 10px;
+}
+
+.for_rent_modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+}
+
+.for_rent_modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 10px;
+}
+
+.for_rent_close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.for_rent_close-button:hover {
+    color: #000;
+}
+
+
+.for_rent_property-container:hover {
+    transform: scale(1.02);
+}
+
+
+.for_rent_property-details p {
+    margin: 5px 0;
+}
+
+/* Modal for property details and input form */
+.for_rent_modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.for_rent_modal-content {
+    width: 60%;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 90vh;
+    overflow-y: auto; /* Allows scrolling for longer forms */
+}
+
+.for_rent_property-form {
+    margin-top: 20px;
+}
+
+.for_rent_property-form h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.for_rent_property-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.for_rent_property-form input,
+.for_rent_property-form select,
+.for_rent_property-form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.for_rent_property-form input[type="file"] {
+    padding: 0;
+}
+
+.for_rent_property-form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.for_rent_close-button {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-container {
+    display: flex; /* Use flexbox for side-by-side layout */
+}
+
+.modal-info {
+    flex: 1; /* Take up equal space on the left */
+    padding: 20px; /* Add some padding */
+}
+
+.modal-images {
+    flex: 1; /* Take up equal space on the right */
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    align-items: center; /* Center images */
+    padding: 20px; /* Add some padding */
+}
+
+.modal-images img {
+    max-width: 100%; /* Ensure images are responsive */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Add space between images */
+}
+
+#modalVideoTour {
+    margin-top: 20px; /* Add some space above the video link */
+}
+
+
+
+
+/*------------------------------------------------Home_Services-------------------------------------------------------------*/
+
+
+
+
+/* Image and Text Section */
+.home_service_image-section {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+.home_service_image-section img {
+    width: 100%;
+    height: 500px;
+}
+
+.home_service_image-section .home_service_overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 96px;
+    color: rgba(179, 100, 27, 0.8);
+    font-weight: bold;
+    font-family: 'Brush Script MT', cursive;
+    opacity: 0.9;
+}
+
+/* Search Bar Section */
+.home_service_search-section {
+    background-image: url('https://ik.imagekit.io/fyhproject/fyhproject_image/services_searchbg.webp?updatedAt=1729337440819');
+    background-size: cover; /* Cover the entire section */
+    height: 500px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Text color */
+}
+
+.home_service_search-text-container {
+    background-color: rgba(179, 100, 27, 0.5); /* White background with 70% opacity */
+    height: 36px; /* Fixed height for the container */
+    line-height: 36px; /* Center the text vertically */
+    padding: 10px 10px; /* Padding for the background */
+    display: inline-block; /* To adjust the width of the background */
+    border-radius: 8px; /* Optional: add rounded corners */
+    margin-bottom: 40px; /* Add margin below to separate from the search bar */
+    margin-top: 20px;
+}
+
+.home_service_search-section .home_service_search-text {
+    font-size: 35px;
+    font-family: 'Brush Script MT', cursive;
+    color: #ffffff;
+    margin: 0;
+}
+
+.home_service_search-container {
+    background: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    height: 40px;
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2),
+                inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+.home_service_search-container:hover > .home_service_search-input {
+    width: 400px;
+}
+
+.home_service_search-container .home_service_search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 0px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.8s;
+}
+
+.home_service_search-container .home_service_search-btn {
+    background: transparent; /* Set background to transparent */
+    border: none;            /* Remove border */
+    outline: none;           /* Remove outline */
+    cursor: pointer;         /* Keep the pointer cursor */
+    display: flex;           /* Center the icon */
+    align-items: center;     /* Align icon vertically */
+}
+
+.home_service_search-container .home_service_search-btn .fas {
+    color: #5cbdbb;
+}
+
+@keyframes home_service_hoverShake {
+    0% { transform: skew(0deg, 0deg); }
+    25% { transform: skew(5deg, 5deg); }
+    75% { transform: skew(-5deg, -5deg); }
+    100% { transform: skew(0deg, 0deg); }
+}
+
+.home_service_search-container:hover {
+    animation: home_service_hoverShake 0.15s linear 3;
+}
+
+/* Description Section */
+.home_service_description-section {
+    padding: 20px 150px 60px;
+    text-align: center;
+    background-color: #d1cebc;
+}
+
+.home_service_description-section h2 {
+    font-size: 28px;
+    color: #4b2f1b;
+}
+
+.home_service_description-section p {
+    font-size: 16px;
+    font-style: italic;
+    color: #4b331b;
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.home_service_service-list {
+    list-style: none;
+    padding: 0;
+}
+
+.home_service_service-list li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-family: 'American Typewriter', serif;
+    color: #4b2f1b;
+}
+
+.home_service_service-list li i {
+    margin-right: 10px;
+    color: #8a5653;
+}
+
+/* Style for the "Add Worker Details" link */
+/* Style for "Add Worker Details" link as a button with a box effect */
+.open-form-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff; /* Blue color */
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Added transform for scaling */
+}
+
+.open-form-link:hover {
+    background-color: rgba(255, 255, 255, 0.6); /* Slightly more opaque on hover */
+    color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Style for the service type dropdown in the search section */
+.home_service_search-dropdown {
+    display: inline-block;
+    width: 200px; /* Set a width */
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #333; /* Text color */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px;
+    background-color: #fff;
+    margin-right: 8px; /* Space between dropdown and search input */
+    appearance: none; /* Remove default browser styles */
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Added background color transition */
+}
+
+.home_service_search-dropdown:hover,
+.home_service_search-dropdown:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    background-color: rgba(0, 123, 255, 0.05); /* Light blue background on hover/focus */
+}
+
+.home_service_search-dropdown option {
+    color: #333; /* Option text color */
+}
+
+/* Background overlay for modal */
+.worker-form-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease; /* Smooth fade in/out */
+}
+
+/* Modal content box */
+.worker-form-content {
+    background-color: #ede7d5;;
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    animation: slideIn 0.3s ease; /* Slide in animation */
+}
+
+/* Close button style */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #007bff; /* Change color on hover */
+}
+
+/* Form elements inside modal */
+.worker-form-content form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+    text-align: left; /* Align label text to the left */
+}
+
+.worker-form-content form input,
+.worker-form-content form select,
+.worker-form-content form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition for input focus */
+}
+
+.worker-form-content form input:focus,
+.worker-form-content form select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Button style */
+.worker-form-content form button {
+    background-color: #b6a895;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px; /* Add space above button */
+    transition: background-color 0.3s ease;
+}
+
+.worker-form-content form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Animation for modal */
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0; /* Start from invisible */
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1; /* End up visible */
+    }
+}
+
+

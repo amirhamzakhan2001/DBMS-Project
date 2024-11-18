@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/script.js" defer></script>
+    <title>Buy Property</title>
+
+    <style>
+        /* Style for the results container */
+        #buy_result_results-container {
+            background-color: #ede7d5; /* Change to desired color */
+            padding: 20px; /* Padding for the container */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, padding 0.3s; /* Smooth transitions */
+        }
+    
+        /* General Styles for Property Results */
+        .buy_result_property-result {
+            display: flex; /* Enable flexbox for layout */
+            background-color: #d1cebc; /* Background color for results */
+            padding: 10px;
+            margin: 10px 0; /* Space between results */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+    
+        .buy_result_property-result:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Elevate the card on hover */
+            transform: translateY(-4px); /* Slight upward movement */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+        }
+    
+        /* Image Slideshow Styles */
+        .buy_result_image-slideshow {
+            width: 35%; /* Width for images */
+            height: 350px; /* Optional: limit the height of the slideshow */
+            overflow: hidden; /* Hide overflow */
+            position: relative; /* Positioning context for sliding images */
+            float: left; /* Position the slideshow to the left side */
+        }
+    
+        .buy_result_image-slideshow img {
+            width: 100%; /* Image should fill the container width */
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0; /* All images start hidden */
+            transition: opacity 1s ease-in-out; /* Smooth fade transition */
+        }
+    
+        /* Styles for Property Details */
+        .buy_result_property-details {
+            width: 65%; /* Width for text details */
+            padding-left: 40px; /* Space between image and text */
+        }
+    
+        .buy_result_property-details .buy_result_property-title {
+            color: #4b2f1b; /* Different color for title */
+            cursor: pointer; /* Change cursor to pointer */
+            text-decoration: underline; /* Underline for link effect */
+            font-family: 'brush script mt', cursive;
+            font-size: 36px;
+            font-weight: bold; /* Bold for emphasis */
+        }
+    
+        .buy_result_property-details .buy_result_property-title:hover {
+            color: #0056b3; /* Darker color on hover */
+        }
+    
+        .buy_result_body-overlay {
+            position: fixed; /* Fix it to the viewport */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999; /* Below the detailed view */
+        }
+    
+        .buy_result_detailed-view {
+            position: fixed; /* Fix it to the viewport */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Offset to center */
+            width: 80%; /* Width of the detailed view */
+            max-height: 80vh; /* Limit height */
+            overflow-y: auto; /* Enable scrolling if content overflows */
+            background-color: #ede7d5; /* Background color */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+            z-index: 1000; /* Ensure it appears above other content */
+            padding: 20px; /* Inner spacing */
+        }
+    
+        .buy_result_detailed-view::-webkit-scrollbar {
+            width: 8px; /* Width of the scrollbar */
+        }
+    
+        .buy_result_detailed-view::-webkit-scrollbar-thumb {
+            background-color: #312014; /* Color of the scrollbar */
+            border-radius: 4px; /* Rounded corners */
+        }
+    
+        .buy_result_detailed-view::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Background color of the scrollbar track */
+        }
+    
+        .buy_result_close-button {
+            position: fixed; /* Keep it within the detailed view */
+            top: 10px; /* Distance from the top */
+            right: 10px; /* Distance from the right */
+            cursor: pointer; /* Change cursor on hover */
+            background: transparent; /* No background */
+            border: none; /* No border */
+            font-size: 24px; /* Increase size */
+            color: #ff0000; /* Color for visibility */
+            z-index: 1005; /* Ensure it appears above the detailed view */
+        }
+    
+        /* Prevents background page from scrolling */
+        .buy_resultoverlayno-scroll {
+            overflow: hidden;
+        }
+
+        /* image grid */
+
+        .buy_result_image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .buy_result_property-image {
+            width: 100%; /* Adjust the width as needed */
+            height: 100%; /* Adjust the height as needed */
+            object-fit: fill;
+        }
+
+        .buy_result_grid-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center; /* Distribute space between items */
+        }
+
+        .buy_detailed_image-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .buy_result_grid-wrapper .buy_detailed_image-container {
+            flex: 1 1 48%; /* Ensure each image container takes up 48% of the width */
+            max-width: 48%; /* Prevent images from being too wide */
+            margin-bottom: 10px; /* Add some space at the bottom of each row */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .buy_result_grid-wrapper .single-image {
+            flex: 1 1 100%; /* If it's the last odd image, it takes full width */
+            max-width: 60%;
+            display: flex;
+            justify-content: center; /* Center the last image */
+            align-items: center;
+        }
+
+    
+        
+
+        .buy_result_info-container {
+            display: flex; /* Use flexbox for two-column layout */
+        }
+
+        .buy_result_info-left, .buy_result_info-right {
+            flex: 1; /* Equal space for both columns */
+            color: #4b2f1b;
+            font-family: 'Bradley Hand', cursive;
+            font-size: 18px;
+        }
+
+        .buy_result_document-images img {
+            /* Style for document images */
+            width: 35%; /* Example size */
+            height: 500px;
+        }
+    
+        /* Text Styles for Property Details */
+        .buy_result_property-details h2 {
+            font-size: 20px; /* Title font size */
+            color: #4b2f1b; /* Title color */
+            margin: 0 0 5px 0; /* Margin below the title */
+        }
+    
+        .buy_result_property-details p {
+            font-size: 18px; /* Description font size */
+            color: #4b2f1b; /* Description color */
+            margin: 5px 0; /* Margin for paragraphs */
+            font-family: 'Bradley Hand', cursive;
+        }
+    
+        /* Pagination Styles */
+        .buy_result_pagination {
+            display: flex; /* Flexbox for pagination buttons */
+            justify-content: center; /* Center pagination */
+            margin: 20px 0; /* Space above and below pagination */
+            padding: 12px 18px; /* Increased padding for better touch targets */
+        }
+    
+        .buy_result_pagination button {
+            background-color: #d1cebc; /* Button color */
+            color: white; /* Text color */
+            border: none; /* No border */
+            padding: 10px 15px; /* Button padding */
+            margin: 5px; /* Margin between buttons */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth background transition */
+            min-width: 80px; /* Minimum width for consistency */
+        }
+    
+        .buy_result_pagination button.active {
+            background-color: #b6a895;
+            font-weight: bold;
+        }
+    
+        .buy_result_pagination button:hover {
+            background-color: #b6a895; /* Hover color */
+        }
+    
+        .buy_result_pagination .disabled {
+            background-color: #ccc; /* Gray color for disabled buttons */
+            color: #666; /* Darker gray for text on disabled buttons */
+            cursor: not-allowed; /* Change cursor for disabled buttons */
+        }
+    
+        /* Styles for pagination controls */
+        .buy_result_pagination .control-button {
+            min-width: 60px; /* Minimum width for control buttons */
+            padding: 10px; /* Consistent padding for control buttons */
+        }
+    
+        /* Optional: Style for no results message */
+        .buy_result_no-results {
+            text-align: center; /* Center text for no results */
+            color: #999; /* Grey color for no results */
+            font-size: 18px; /* Font size for no results */
+        }
+    
+        /* New Styles for Improved User Experience */
+        .buy_result_property-result:focus {
+            outline: none; /* Remove default outline */
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Custom outline for focus state */
+        }
+    
+        .buy_result_property-details .buy_result_property-title::after {
+            content: ' ➜'; /* Arrow indicator for clickability */
+            font-size: 14px; /* Adjust size */
+            color: #4b2f1b; /* Match title color */
+            transition: transform 0.2s; /* Transition for hover effect */
+        }
+    
+        .buy_result_property-details .buy_result_property-title:hover::after {
+            transform: translateX(2px); /* Move arrow on hover */
+        }
+    
+    </style>
+    
+    
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <main id="content">
+        <!-- Main Content -->
+        <section class="buyproperty_body">
+            <!-- Image Section with Search Bar Overlay -->
+            <section class="buyproperty_image_container">
+                <div class="buyproperty_search_overlay">
+                    <select id="locality" name="locality" required class="search_full_width">
+                        <option value="">Select Locality </option>
+                        <option value="Ghaffar Manzil">Ghaffar Manzil</option>
+                        <option value="Haji Colony">Haji Colony</option>
+                        <option value="Johri Farm">Johri Farm</option>
+                        <option value="Noor Nagar">Noor Nagar</option>
+                        <option value="Okhla Vihar">Okhla Vihar</option>
+                        <option value="Shaheen Bagh">Shaheen Bagh</option>
+                        <option value="Abu Fazal Enclave">Abu Fazal Enclave</option>
+                        <option value="Joga Bai Extn">Joga Bai Extn</option>
+                        <option value="Ghafoor Nagar">Ghafoor Nagar</option>
+                        <option value="Zakir Nagar">Zakir Nagar</option>
+                        <option value="Batla House Chowk">Batla House Chowk</option>
+                        <option value="Khaliullah Masjid">Khaliullah Masjid</option>
+                        <option value="Pahalwan Chowk">Pahalwan Chowk</option>
+                        <option value="Jasola Vihar">Jasola Vihar</option>
+                        <option value="Sukhdev Vihar">Sukhdev Vihar</option>
+                        <option value="Julena">Julena</option>
+                        <option value="New Friends Colony">New Friends Colony</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <div class="search_row">
+                        <select id="property_type" name="property_type" class="buyproperty_search_select">
+                            <option value="">Property Type</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="villa">Villa</option>
+                        </select>
+                        <select id="number_of_bedrooms" name="number_of_bedrooms" class="buyproperty_search_select">
+                            <option value="">Number of Bedrooms</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">5+</option>
+                        </select>
+                        <input type="text" id="price" name="price" placeholder="Max Price" class="buyproperty_search_input">
+                    </div>
+                    <button id="search-button" class="search_full_width search_button">Search</button>
+                </div>
+            </section>
+        </section>
+    </main>
+    
+
+    <div id="footer"></div>
+
+
+
+</body>
+</html>

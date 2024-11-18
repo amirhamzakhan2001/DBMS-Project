@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Find Your Home</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            height: 100vh;
+        }
+
+        .full-width-container {
+            width: 100%; /* Full width of the body */
+            height: auto; /* Adjusts height to content */
+            padding: 20px; /* Optional padding for content spacing */
+            box-sizing: border-box; /* Include padding in the element's width and height */
+            background-color: #f4f4f4; /* Optional background color */
+            margin: 0; /* Remove any default margins */
+        }
+
+
+        .main-content-container {
+            display: flex;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 350px; /* Keep the same width */
+            background-color: #343a40; /* Same background color */
+            color: #ffffff; /* Same text color */
+            height: auto; /* Height adjusts based on the container's content */
+            position: relative; /* No longer fixed, stays within its parent container */
+            padding-top: 20px; /* Same padding */
+            border-radius: 20px;
+        }
+
+
+        .sidebar-header {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav ul li {
+            width: 100%;
+        }
+
+        .sidebar-nav ul li a {
+            display: block;
+            color: #dcdcdc;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-nav ul li a:hover {
+            background-color: #495057;
+            color: #ffffff;
+        }
+
+        /* Main Content Section (Right) */
+        .main-content-right {
+            margin-left: 10px; /* Adjust for the sidebar width */
+            width: 82%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Header */
+        .header {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+            font-size: 40px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Analytics Section */
+        .analytics_container {
+            display: block;
+            gap: 30px;
+        }
+
+        .analytics-box {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .analytics-box .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+        }
+
+        .analytics-box .card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+
+        .analytics-box .card p {
+            font-size: 16px;
+            color: #6c757d;
+        }
+
+        .analytics-summary {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .analytics-summary ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .analytics-summary li {
+            font-size: 16px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .analytics-box {
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .total-count {
+            font-size: 36px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .label {
+            font-size: 14px;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+
+
+        /* styling canva---------------------- */
+        /* Style the canvas container to center it and set a max width */
+        .canvas-container {
+            flex: 1 1 48%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f4f4f9;  /* Light background for the entire container */
+            flex: 1 1 48%; /* Two containers per row with a 4% gap */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling the canvas element itself */
+        canvas {
+            max-width: 500px;  /* Ensure canvas adjusts its size based on the container */
+            max-height: 400px;  /* Maintain aspect ratio */
+            border: 2px solid #ccc;  /* Border around the canvas */
+            border-radius: 8px;  /* Rounded corners */
+            background-color: #ffffff;  /* White background for canvas */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Light shadow for depth */
+            margin: 10px;
+        }
+
+        .chart-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+            gap: 20px; /* Space between the grid items */
+            margin-bottom: 20px;
+        }
+
+
+        /* Optional: Styling the title or header for the canvas */
+        .canvas-title {
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Example of styling for canvas text when drawing on the canvas */
+        canvas {
+            font-family: 'Arial', sans-serif;
+            color: #333;  /* Default color for any text drawn on canvas */
+        }
+
+        /* Add hover effect for canvas (optional) */
+        canvas:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Styling canvas when it's loading or no data */
+        .canvas-loading {
+            background-color: #f3f3f3;  /* Light grey background when loading */
+            text-align: center;
+            color: #888;
+            line-height: 200px;  /* Center text vertically */
+            font-size: 18px;
+        }
+
+
+        /* Optional: Style for the sections */
+        .section-container {
+            display: none; /* Hide sections by default */
+        }
+        
+
+        .section-container.active {
+            display: block;
+            background-color: lightblue; /* Any color to test */
+            padding: 20px; /* Add padding to give it some space */
+            border: 1px solid #ddd; /* Optional, just for a border around the section */
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #analytics-container {
+            display: block;
+        }
+
+
+
+
+        /* Centered Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center; /* Center buttons */
+            gap: 20px; /* Space between buttons */
+            margin-bottom: 20px;
+        }
+
+        .action-btn {
+            padding: 10px 15px;
+            background-color: #d44136b8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table Wrapper */
+        .table-wrapper {
+            width: 100%;
+            overflow: hidden; /* Prevent spilling outside container */
+            margin-top: 20px;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Enable horizontal scroll */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #sell-properties-table {
+            min-width: 1800px; /* Table width ensures horizontal scroll */
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        #sell-properties-table th,
+        #sell-properties-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        #sell-properties-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        #rent-properties-table {
+            min-width: 1800px; /* Table width ensures horizontal scroll */
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        #rent-properties-table th,
+        #rent-properties-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        #rent-properties-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        #home-services-table {
+            min-width: 1800px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        #home-services-table th, #home-services-table td {
+            border: 10px solid #ddd;
+            padding: 8px;
+        }
+
+        #home-services-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        #client-profile-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #client-profile-table th, #client-profile-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+
+        /* Centered Pagination Controls */
+        .pagination-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pagination-btn {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pagination-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #current-page {
+            font-size: 16px;
+        }
+
+        /* Overlay (grey background layer) */
+        #overlay {
+            display: none; /* Initially hidden */
+            position: fixed;  /* Cover the entire screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent grey */
+            z-index: 5; /* Place it below the modal but above other content */
+            backdrop-filter: blur(5px); /* Apply blur effect */
+            -webkit-backdrop-filter: blur(5px); /* Safari support */
+        }
+
+
+        #delete-property-container {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: absolute;  /* Position above the table */
+            top: 100px;  /* Adjust this value based on your layout */
+            left: 50%;  /* Horizontally center */
+            transform: translateX(-50%); /* Correct centering */
+            z-index: 10;  /* Ensure it stays on top of other content */
+            display: flex;  /* Enable flexbox */
+            flex-direction: column;  /* Stack elements vertically */
+            align-items: center;  /* Center horizontally */
+            justify-content: center;  /* Center vertically */
+        }
+
+        /* Basic styling for input and buttons inside the delete container */
+        #delete-property-container input,
+        #delete-property-container button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        #delete-property-container input {
+            width: 200px;
+        }
+
+        #delete-property-container button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #delete-property-container button:hover {
+            background-color: #d32f2f;
+        }
+
+        #delete-rent-property-btn {
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        #delete-rent-property-btn:hover {
+            background-color: #fb8c00;
+        }
+
+
+
+
+
+
+        #delete-sell-property-container {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: absolute;  /* Position above the table */
+            top: 100px;  /* Adjust this value based on your layout */
+            left: 50%;  /* Horizontally center */
+            transform: translateX(-50%); /* Correct centering */
+            z-index: 10;  /* Ensure it stays on top of other content */
+            display: flex;  /* Enable flexbox */
+            flex-direction: column;  /* Stack elements vertically */
+            align-items: center;  /* Center horizontally */
+            justify-content: center;  /* Center vertically */
+        }
+
+        /* Basic styling for input and buttons inside the delete container */
+        #delete-sell-property-container input,
+        #delete-sell-property-container button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        #delete-sell-property-container input {
+            width: 200px;
+        }
+
+        #delete-sell-property-container button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #delete-sell-property-container button:hover {
+            background-color: #d32f2f;
+        }
+
+        #delete-sell-property-btn {
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        #delete-sell-property-btn:hover {
+            background-color: #fb8c00;
+        }
+
+
+
+
+
+        #delete-home-service-container {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: absolute;  /* Position above the table */
+            top: 100px;  /* Adjust this value based on your layout */
+            left: 50%;  /* Horizontally center */
+            transform: translateX(-50%); /* Correct centering */
+            z-index: 10;  /* Ensure it stays on top of other content */
+            display: flex;  /* Enable flexbox */
+            flex-direction: column;  /* Stack elements vertically */
+            align-items: center;  /* Center horizontally */
+            justify-content: center;  /* Center vertically */
+        }
+
+        /* Basic styling for input and buttons inside the delete container */
+        #delete-home-service-container input,
+        #delete-home-service-container button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        #delete-home-service-container input {
+            width: 200px;
+        }
+
+        #delete-home-service-container button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #delete-home-service-container button:hover {
+            background-color: #d32f2f;
+        }
+
+        #delete-home-service-btn {
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        #delete-home-service-btn:hover {
+            background-color: #fb8c00;
+        }
+
+
+
+
+        #delete-client-profile-container {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: absolute;  /* Position above the table */
+            top: 100px;  /* Adjust this value based on your layout */
+            left: 50%;  /* Horizontally center */
+            transform: translateX(-50%); /* Correct centering */
+            z-index: 10;  /* Ensure it stays on top of other content */
+            display: flex;  /* Enable flexbox */
+            flex-direction: column;  /* Stack elements vertically */
+            align-items: center;  /* Center horizontally */
+            justify-content: center;  /* Center vertically */
+        }
+
+        #delete-client-profile-container input,
+        #delete-client-profile-container button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        #delete-client-profile-container input {
+            width: 200px;
+        }
+
+        #delete-client-profile-container button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #delete-client-profile-container button:hover {
+            background-color: #d32f2f;
+        }
+
+        #delete-client-profile-btn {
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        #delete-client-profile-btn:hover {
+            background-color: #fb8c00;
+        }
+
+
+
+        /* Dropdown menu styles */
+        .dropdown-menu {
+            display: none;
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+            background-color: #a4aa70;
+            border: 1px solid #2c3e50;
+        }
+        .dropdown-menu li {
+            padding: 10px 15px;
+        }
+        .dropdown-menu li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-menu li a:hover {
+            background-color: #2c3e50;
+        }
+
+
+        /* Overlay for background dimming */
+        #update-property-container, 
+        #update-rent-property-container, 
+        #update-home-service-container, 
+        #update-client-profile-container {
+            position: fixed;
+            top: 25%;
+            left: 25%;
+            width: 100%;
+            height: 100%;
+            /* background: rgba(0, 0, 0, 0.5);  Semi-transparent background */
+            display: none;  /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        /* Container for the update form */
+        .update-form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        /* Form Heading */
+        .update-form-container h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Input Fields Styling */
+        #update-property-form, 
+        #update-rent-property-form, 
+        #update-home-service-form, 
+        #update-client-profile-form label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        #update-property-form input,
+        #update-property-form select,
+        #update-property-form textarea,
+        #update-rent-property-form input,
+        #update-rent-property-form select,
+        #update-rent-property-form textarea,
+        #update-home-service-form input,
+        #update-home-service-form select,
+        #update-home-service-form textarea,
+        #update-client-profile-form input,
+        #update-client-proile-form select,
+        #update-client-profile-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Style for textarea */
+        #update-property-form textarea, 
+        #update-rent-property-form textarea, 
+        #update-home-service-form textarea, 
+        #update-client-profile-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Add Column Section Style */
+        #fields-container {
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
+        #submit-update-btn, #submit-update-rent-btn, #submit-update-home-btn, #submit-update-client-btn,
+        #close-update-form, #close-update-rent-form,#close-update-home-form,#close-update-client-form {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        #submit-update-btn,#submit-update-rent-btn, #submit-update-home-btn, #submit-update-client-btn {
+            background-color: #4CAF50;
+        }
+
+        #close-update-form, #close-update-rent-form,#close-update-home-form,#close-update-client-form {
+            background-color: #f44336;
+            width: auto;
+            margin-left: 10px;
+        }
+
+        /* Button Hover Effect */
+        #submit-update-btn, #submit-update-rent-btn, #submit-update-home-btn, #submit-update-client-btn :hover,
+        #close-update-form, #close-update-rent-form,#close-update-home-form,#close-update-client-form :hover {
+            opacity: 0.8;
+        }
+
+        /* Close button positioning */
+        #close-update-form, #close-update-rent-form,#close-update-home-form,#close-update-client-form {
+            display: inline-block;
+            margin-left: 0;
+        }
+
+        /* Overlay: Center the form */
+        #update-property-container .update-form-container, 
+        #update-rent-property-container .update-form-container, 
+        #update-home-service-container .update-form-container, 
+        #update-client-profile-container .update-form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Add spacing between dynamic fields */
+        #fields-container > div {
+            margin-bottom: 15px;
+        }
+
+        /* Optional: Scrollable Form when content is too long */
+        #update-property-container .update-form-container,
+        #update-rent-property-container .update-form-container,
+        #update-home-services-container .update-form-container,
+        #update-client-container .update-form-container {
+            max-height: 80%;
+            overflow-y: auto;
+        }
+
+
+        
+
+        
+
+    </style>
+</head>
+<body>
+
+
+    <div id="header"></div>
+    <main id="content">
+
+        <div class="full-width-container">
+            <!-- Main Container -->
+            <div class="main-content-container">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-header" onclick="loadSection('analytics-container')">
+                        <h2>Admin Dashboard</h2>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li><a href="#sell-property" onclick="loadSection('sell-property', event)">Sell Property Management</a></li>
+                            <li><a href="#rent-property" onclick="loadSection('rent-property', event)">Rent Property Management</a></li>
+                            <li><a href="#home-services" onclick="loadSection('home-services', event)">Home Services Workers</a></li>
+                            <li><a href="#client-management" onclick="loadSection('client-management', event)">Client Management</a></li>
+                            <li>
+                                <a href="#" onclick="toggleDropdown(event)">Settings</a>
+                                <!-- Dropdown Menu -->
+                                <ul id="settings-dropdown" class="dropdown-menu">
+                                    <li><a href="#" onclick="loadSection('user-management', event)">User Management</a></li>
+                                    <li><a href="#" onclick="loadSection('dashboard-customization', event)">Dashboard Customization</a></li>
+                                    <li><a href="#" onclick="loadSection('notification-settings', event)">Notification Settings</a></li>
+                                    <li><a href="#" onclick="loadSection('profile-settings', event)">Profile Settings</a></li>
+                                    <li><a href="#" onclick="loadSection('data-backup', event)">Data Backup and Restore</a></li>
+                                    <li><a href="#" onclick="loadSection('system-logs', event)">System Logs</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="main-content-right">
+                    <!-- Header Section (Greeting) -->
+                    <div class="header">
+                        <span>Welcome, Admin</span>
+                    </div>
+
+                    <!-- Analytics Section -->
+                    <div id="analytics-container" class="analytics_container">
+                        <h1>Analytics</h1>
+                        <!-- Placeholder for charts and graphs -->
+                        <!-- Client Analytics Section -->
+                        <section id="client-analytics">
+                            <h2>Client Analytics</h2>
+                            <div class="analytics-summary">
+                                <ul>
+                                    <li>
+                                        <div class="analytics-box">
+                                            <span id="total-sell-properties" class="total-count">0</span>
+                                            <span class="label">Total number of Properties to Sell</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="analytics-box">
+                                            <span id="total-rent-properties" class="total-count">0</span>
+                                            <span class="label">Total number of Properties to Rent</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="analytics-box">
+                                            <span id="total-home-service-workers" class="total-count">0</span>
+                                            <span class="label">Total number of Home Service Workers</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <canvas id="clientChart"></canvas>
+                        </section>
+
+                        <!-- Sell Property Analytics Section -->
+                        <section id="sell-property-analytics">
+                            <h2>Sell Property Analytics</h2>
+                            <div class="chart-row">
+                            <canvas id="sell-property-by-type"></canvas>
+                            <canvas id="sell-property-by-locality"></canvas>
+                            <canvas id="sell-property-by-price-range"></canvas>
+                            <canvas id="sell-property-by-condition"></canvas>
+                            <canvas id="sell-property-by-bedrooms"></canvas>
+                            <canvas id="sell-property-by-furnished-status"></canvas>
+                            </div>
+                        </section>
+                        
+                        
+                        <!-- Rent Property Analytics Section -->
+                        <section id="rent-property-analytics">
+                            <h2>Rent Property Analytics</h2>
+                            <div class="chart-row">
+                            <canvas id="rent-property-by-type"></canvas>
+                            <canvas id="rent-property-by-locality"></canvas>
+                            <canvas id="rent-property-by-price-range"></canvas>
+                            <canvas id="rent-property-by-condition"></canvas>
+                            <canvas id="rent-property-by-bedrooms"></canvas>
+                            <canvas id="rent-property-by-furnished-status"></canvas>
+                            </div>
+                        </section>
+                        
+                        <!-- Home Service Worker Analytics Section -->
+                        <section id="home-service-worker-analytics">
+                            <h2>Home Service Worker Analytics</h2>
+                            <div class="chart-row">
+                            <canvas id="home-service-worker-by-locality"></canvas>
+                            <canvas id="home-service-worker-by-service-type"></canvas>
+                            <canvas id="home-service-worker-by-experience"></canvas>
+                            </div>
+                        </section>
+                            
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- Grey Background Overlay -->
+                    <div id="overlay"></div>
+
+                    <div id="sell-property" class="section-container" style="display:none;">
+                        <div id="sell-property-container" class="analytics_container">
+                            <h2>Sell Property Section</h2>
+                    
+                            <!-- Centered Action Buttons -->
+                            <div class="button-group">
+                                <button id="add-sell-property-btn" class="action-btn">Add Property</button>
+                                <button id="update-sell-property-btn" class="action-btn">Update Property</button>
+                                <button id="delete-sell-property-btn" class="action-btn">Delete Property</button>
+                            </div>
+                    
+                            <!-- Table Wrapper for Scrollable Content -->
+                            <div class="table-wrapper">
+                                <div class="table-container">
+                                    <table id="sell-properties-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Client ID</th>
+                                                <th>Property Title</th>
+                                                <th>Property Type</th>
+                                                <th>Price</th>
+                                                <th>Locality</th>
+                                                <th>Location</th>
+                                                <th>Area</th>
+                                                <th>Bedrooms</th>
+                                                <th>Bathrooms</th>
+                                                <th>Balconies</th>
+                                                <th>Year Built</th>
+                                                <th>Condition</th>
+                                                <th>Parking Spaces</th>
+                                                <th>Amenities</th>
+                                                <th>Furnished</th>
+                                                <th>Utilities Included</th>
+                                                <th>Floor Number</th>
+                                                <th>Description</th>
+                                                <th>Photos</th>
+                                                <th>Video Tour</th>
+                                                <th>Seller Name</th>
+                                                <th>Contact Number</th>
+                                                <th>Email</th>
+                                                <th>Preferred Contact</th>
+                                                <th>Additional Notes</th>
+                                                <th>Property Documents</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Table rows will be populated dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    
+                            <!-- Centered Pagination Controls -->
+                            <div class="pagination-controls">
+                                <button id="prev-page-btn" class="pagination-btn">Previous</button>
+                                <span id="current-page">1</span>
+                                <button id="next-page-btn" class="pagination-btn">Next</button>
+                            </div>
+
+                            <!-- Dynamic Update Property Form -->
+                            <div id="update-property-container" style="display:none;">
+                                <div class="update-form-container">
+                                    <h2>Update Property</h2>
+
+                                    <!-- Form to Update Property -->
+                                    <form id="update-property-form">
+                                        <label for="property-id">Property ID:</label>
+                                        <input type="text" id="property-id" name="id" placeholder="Enter Property ID" required>
+
+                                        <!-- Section for each updatable field -->
+                                        <div id="fields-container">
+                                            <!-- Dynamic input sections will be added here -->
+                                        </div>
+
+                                        <button type="submit" id="submit-update-btn">Update Property</button>
+                                        <button type="button" id="close-update-form">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Delete Sell Property Container (Initially Hidden) -->
+                            <div id="delete-sell-property-container" style="display:none;">
+                                <h3>Enter Property ID to Delete</h3>
+                                <input type="text" id="delete-sell-property-id" placeholder="Enter Property ID">
+                                <button id="confirm-delete-sell-btn">Delete</button>
+                                <button id="cancel-delete-sell-btn">Cancel</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+
+
+
+
+
+
+
+
+
+                    
+                    <div id="rent-property" class="section-container" style="display:none;">
+                        <div id="rent-property-container" class="analytics_container">
+                            <h2>Rent Property Section</h2>
+                    
+                            <!-- Centered Action Buttons -->
+                            <div class="button-group">
+                                <button id="add-rent-property-btn" class="action-btn">Add Property</button>
+                                <button id="update-rent-property-btn" class="action-btn">Update Property</button>
+                                <button id="delete-rent-property-btn" class="action-btn">Delete Property</button>
+                            </div>
+
+                    
+                            <!-- Table Wrapper for Scrollable Content -->
+                            <div class="table-wrapper">
+                                <div class="table-container">
+                                    <table id="rent-properties-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Client ID</th>
+                                                <th>Property Title</th>
+                                                <th>Property Type</th>
+                                                <th>Monthly Price</th>
+                                                <th>Locality</th>
+                                                <th>Location</th>
+                                                <th>Area</th>
+                                                <th>Bedrooms</th>
+                                                <th>Bathrooms</th>
+                                                <th>Balconies</th>
+                                                <th>Year Built</th>
+                                                <th>Condition</th>
+                                                <th>Parking Spaces</th>
+                                                <th>Amenities</th>
+                                                <th>Furnished</th>
+                                                <th>Utilities Included</th>
+                                                <th>Floor Number</th>
+                                                <th>Description</th>
+                                                <th>Photos</th>
+                                                <th>Video Tour</th>
+                                                <th>Landlord Name</th>
+                                                <th>Contact Number</th>
+                                                <th>Email</th>
+                                                <th>Preferred Contact</th>
+                                                <th>Additional Notes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Table rows will be populated dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    
+                            <!-- Centered Pagination Controls -->
+                            <div class="pagination-controls">
+                                <button id="rent-prev-page-btn" class="pagination-btn">Previous</button>
+                                <span id="rent-current-page">1</span>
+                                <button id="rent-next-page-btn" class="pagination-btn">Next</button>
+                            </div>
+
+
+                            <!-- Update Property Form -->
+                            <div id="update-rent-property-container" style="display:none;">
+                                <div class="update-form-container">
+                                    <h2>Update Rent Property</h2>
+
+                                    <!-- Form to Update Rent Property -->
+                                    <form id="update-rent-property-form">
+                                        <label for="rent-property-id">Property ID:</label>
+                                        <input type="text" id="rent-property-id" name="id" placeholder="Enter Property ID" required>
+
+                                        <!-- Section for each updatable field -->
+                                        <div id="rent-fields-container">
+                                            <!-- Dynamic input sections will be added here -->
+                                        </div>
+
+                                        <button type="submit" id="submit-update-rent-btn">Update Property</button>
+                                        <button type="button" id="close-update-rent-form">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Delete Property Container (Initially Hidden) -->
+                            <div id="delete-property-container" style="display:none;">
+                                <h3>Enter Property ID to Delete</h3>
+                                <input type="text" id="delete-property-id" placeholder="Enter Property ID">
+                                <button id="confirm-delete-btn">Delete</button>
+                                <button id="cancel-delete-btn">Cancel</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    
+
+
+
+                    
+
+                    <div id="home-services" class="section-container" style="display:none;">
+                        <div id="home-services-container" class="analytics_container">
+                            <h2>Home Services Section</h2>
+                    
+                            <!-- Centered Action Buttons -->
+                            <div class="button-group">
+                                <button id="add-home-service-btn" class="action-btn">Add Property</button>
+                                <button id="update-home-service-btn" class="action-btn">Update Property</button>
+                                <button id="delete-home-service-btn" class="action-btn">Delete Property</button>
+                            </div>
+                    
+                            <div class="table-wrapper">
+                                <div class="table-container">
+                                    <table id="home-services-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Full Name</th>
+                                                <th>Service Type</th>
+                                                <th>Phone Number</th>
+                                                <th>Locality</th>
+                                                <th>Availability</th>
+                                                <th>Profile Picture</th>
+                                                <th>Rate</th>
+                                                <th>Years of Experience</th>
+                                                <th>Client ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Table rows will be dynamically inserted here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    
+                            <!-- Centered Pagination Controls -->
+                            <div class="pagination-controls">
+                                <button id="home-prev-page-btn" class="pagination-btn">Previous</button>
+                                <span id="home-current-page">1</span>
+                                <button id="home-next-page-btn" class="pagination-btn">Next</button>
+                            </div>
+
+
+                            <!-- Update Home Service Form -->
+                            <div id="update-home-service-container" style="display:none;">
+                                <div class="update-form-container">
+                                    <h2>Update Home Service</h2>
+
+                                    <!-- Form to Update Home Service -->
+                                    <form id="update-home-service-form">
+                                        <label for="home-service-id">Service ID:</label>
+                                        <input type="text" id="home-service-id" name="id" placeholder="Enter Service ID" required>
+
+                                        <!-- Section for each updatable field -->
+                                        <div id="home-fields-container">
+                                            <!-- Dynamic input sections will be added here -->
+                                        </div>
+
+                                        <button type="submit" id="submit-update-home-btn">Update Service</button>
+                                        <button type="button" id="close-update-home-form">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Delete Home Service Container (Initially Hidden) -->
+                            <div id="delete-home-service-container" style="display:none;">
+                                <h3>Enter Home Service ID to Delete</h3>
+                                <input type="text" id="delete-home-service-id" placeholder="Enter Home Service ID">
+                                <button id="confirm-delete-home-service-btn">Delete</button>
+                                <button id="cancel-delete-home-service-btn">Cancel</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                    
+                    <div id="client-management" class="section-container" style="display:none;">
+                        <div id="client-management-container" class="analytics_container">
+                            <h2>Client Management Section</h2>
+
+                            <!-- Centered Action Buttons -->
+                            <div class="button-group">
+                                <button id="add-client-profile-btn" class="action-btn">Add Profile</button>
+                                <button id="update-client-profile-btn" class="action-btn">Update Profile</button>
+                                <button id="delete-client-profile-btn" class="action-btn">Delete Profile</button>
+                            </div>
+                            <table id="client-profile-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Client ID</th>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Date of Birth</th>
+                                        <th>Preferred Contact</th>
+                                        <th>Address</th>
+                                        <th>Profile Picture</th>
+                                        <th>Is Complete</th>
+                                        <th>Facebook Links</th>
+                                        <th>Twitter Links</th>
+                                        <th>Linkedin Links</th>
+                                        <th>Bio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Client profile rows will be inserted here -->
+                                </tbody>
+                            </table>
+                            <!-- Pagination controls -->
+                            <div class="pagination-controls">
+                                <button id="client-prev-page-btn" class="pagination-btn">Previous</button>
+                                <span id="client-current-page">1</span>
+                                <button id="client-next-page-btn" class="pagination-btn">Next</button>
+                            </div>
+
+
+                             <!-- Update Client Profile Form -->
+                            <div id="update-client-profile-container" style="display:none;">
+                                <div class="update-form-container">
+                                    <h2>Update Client Profile</h2>
+
+                                    <!-- Form to Update Client Profile -->
+                                    <form id="update-client-profile-form">
+                                        <label for="client-profile-id">Client ID:</label>
+                                        <input type="text" id="client-profile-id" name="id" placeholder="Enter Client ID" required>
+
+                                        <!-- Section for each updatable field -->
+                                        <div id="client-fields-container">
+                                            <!-- Dynamic input sections will be added here -->
+                                        </div>
+
+                                        <button type="submit" id="submit-update-client-btn">Update Profile</button>
+                                        <button type="button" id="close-update-client-form">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Delete Client Profile Container (Initially Hidden) -->
+                            <div id="delete-client-profile-container" style="display:none;">
+                                <h3>Enter Client ID to Delete</h3>
+                                <input type="text" id="delete-client-id" placeholder="Enter Client ID">
+                                <button id="confirm-delete-client-btn">Delete</button>
+                                <button id="cancel-delete-client-btn">Cancel</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div id="settings" class="section-container" style="display:none;">
+                        <div id="settings-container" class="analytics_container">
+                            <h2>Setting Section</h2>
+                            <!-- Your settings content here -->
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+</body>
+</html>

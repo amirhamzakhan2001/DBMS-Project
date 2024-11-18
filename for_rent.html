@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/script.js" defer></script>
+    <title>Property for Rent</title>
+
+    <style>
+        /* Style for the results container */
+        #rent_result_results-container {
+            background-color: #ede7d5; /* Change to desired color */
+            padding: 20px; /* Padding for the container */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, padding 0.3s; /* Smooth transitions */
+        }
+    
+        /* General Styles for Property Results */
+        .rent_result_property-result {
+            display: flex; /* Enable flexbox for layout */
+            background-color: #d1cebc; /* Background color for results */
+            padding: 10px;
+            margin: 10px 0; /* Space between results */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+    
+        .rent_result_property-result:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Elevate the card on hover */
+            transform: translateY(-4px); /* Slight upward movement */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+        }
+    
+        /* Image Slideshow Styles */
+        .rent_result_image-slideshow {
+            width: 35%; /* Width for images */
+            height: 350px; /* Optional: limit the height of the slideshow */
+            overflow: hidden; /* Hide overflow */
+            position: relative; /* Positioning context for sliding images */
+            float: left; /* Position the slideshow to the left side */
+        }
+    
+        .rent_result_image-slideshow img {
+            width: 100%; /* Image should fill the container width */
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0; /* All images start hidden */
+            transition: opacity 1s ease-in-out; /* Smooth fade transition */
+        }
+    
+        /* Styles for Property Details */
+        .rent_result_property-details {
+            width: 65%; /* Width for text details */
+            padding-left: 40px; /* Space between image and text */
+        }
+    
+        .rent_result_property-details .rent_result_property-title {
+            color: #4b2f1b; /* Different color for title */
+            cursor: pointer; /* Change cursor to pointer */
+            text-decoration: underline; /* Underline for link effect */
+            font-family: 'brush script mt', cursive;
+            font-size: 36px;
+            font-weight: bold; /* Bold for emphasis */
+        }
+    
+        .rent_result_property-details .rent_result_property-title:hover {
+            color: #0056b3; /* Darker color on hover */
+        }
+    
+        .rent_result_body-overlay {
+            position: fixed; /* Fix it to the viewport */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999; /* Below the detailed view */
+        }
+    
+        .rent_result_detailed-view {
+            position: fixed; /* Fix it to the viewport */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Offset to center */
+            width: 80%; /* Width of the detailed view */
+            max-height: 80vh; /* Limit height */
+            overflow-y: auto; /* Enable scrolling if content overflows */
+            background-color: #ede7d5; /* Background color */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+            z-index: 1000; /* Ensure it appears above other content */
+            padding: 20px; /* Inner spacing */
+        }
+    
+        .rent_result_detailed-view::-webkit-scrollbar {
+            width: 8px; /* Width of the scrollbar */
+        }
+    
+        .rent_result_detailed-view::-webkit-scrollbar-thumb {
+            background-color: #007bff; /* Color of the scrollbar */
+            border-radius: 4px; /* Rounded corners */
+        }
+    
+        .rent_result_detailed-view::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Background color of the scrollbar track */
+        }
+    
+        .rent_result_close-button {
+            position: fixed; /* Keep it within the detailed view */
+            top: 10px; /* Distance from the top */
+            right: 10px; /* Distance from the right */
+            cursor: pointer; /* Change cursor on hover */
+            background: transparent; /* No background */
+            border: none; /* No border */
+            font-size: 24px; /* Increase size */
+            color: #ff0000; /* Color for visibility */
+            z-index: 1005; /* Ensure it appears above the detailed view */
+        }
+    
+        /* Prevents background page from scrolling */
+        .rent_resultoverlayno-scroll {
+            overflow: hidden;
+        }
+
+        .rent_result_slideshow-container {
+            position: relative; /* Needed for child z-index to work */
+            z-index: 1001;
+        }
+
+        .rent_result_image_manual_slideshow {
+            position: relative; /* Position relative for absolute children */
+            width: 100%; /* Set to the full width of the parent */
+            height: 80%; /* Adjust as necessary */
+            overflow: hidden; /* Hide overflow */
+            z-index: 1002;
+        }
+
+        .rent_result_slideshow-wrapper {
+            position: relative; /* Positioning context for images */
+            width: 100%; /* Full width for the images */
+            height: 100%; /* Full height for the wrapper */
+            overflow: hidden;
+            z-index: 1003;
+        }
+
+        .rent_result_property-image {
+            width: 100%; /* Full width of the parent container */
+            height: 80vh; /* 80% height of the detailed view */
+            position: relative; /* Relative positioning for child elements */
+            overflow: hidden; /* Hide overflow for smooth sliding */
+            border-radius: 8px; /* Optional: rounded corners */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Center align vertically */
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1004;
+        }
+
+        .rent_result_property-image:first-of-type {
+            display: block; /* Show the first image */
+        }
+
+        .image-container {
+            position: relative; /* Positioning for images */
+            width: 100%; /* Full width for the container */
+            height: 100%; /* Full height for the container */
+        }
+
+        .rent_result_property-image img {
+            width: 100%; /* Image takes the full width */
+            height: 100%; /* Image takes the full height */
+            position: absolute; /* Positioning to allow for sliding */
+            top: 0; /* Align to the top of the container */
+            left: 0; /* Start from the left */
+            opacity: 0; /* Start with the image hidden */
+            transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+        }
+
+        .rent_result_property-image img.active {
+            opacity: 1; /* Only the active image is visible */
+        }
+
+        .rent_result_slideshow-button {
+            position: absolute; /* Position buttons within the image container */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Offset to perfectly center */
+            background: rgba(255, 255, 255, 0.7); /* Light background for buttons */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded buttons */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background 0.3s; /* Smooth background transition */
+            z-index: 1007; /* Ensure buttons are above the images */
+            padding: 10px; /* Padding for larger clickable area */
+            pointer-events: auto !important;
+            visibility: visible !important;
+        }
+
+        .rent_result_slideshow-button:hover {
+            background: rgba(255, 255, 255, 1); /* Solid background on hover */
+        }
+
+        .rent_result_slideshow-button.prev {
+            left: 10px; /* Position for the previous button */
+        }
+
+        .rent_result_slideshow-button.next {
+            right: 10px; /* Position for the next button */
+        }
+    
+        .rent_result_info-container {
+            display: flex; /* Use flexbox for two-column layout */
+        }
+
+        .rent_result_info-left, .rent_result_info-right {
+            flex: 1; /* Equal space for both columns */
+            color: #4b2f1b;
+            font-family: 'Bradley Hand', cursive;
+            font-size: 18px;
+        }
+
+        .rent_result_document-images img {
+            /* Style for document images */
+            width: 100px; /* Example size */
+            height: auto;
+        }
+    
+        /* Text Styles for Property Details */
+        .rent_result_property-details h2 {
+            font-size: 20px; /* Title font size */
+            color: #4b2f1b; /* Title color */
+            margin: 0 0 5px 0; /* Margin below the title */
+        }
+    
+
+        .rent_result_property-details p {
+            font-size: 18px; /* Description font size */
+            color: #4b2f1b; /* Description color */
+            margin: 5px 0; /* Margin for paragraphs */
+            font-family: 'Bradley Hand', cursive;
+        }
+
+        /* Pagination Styles */
+        .rent_result_pagination {
+            display: flex; /* Flexbox for pagination buttons */
+            justify-content: center; /* Center pagination */
+            margin: 20px 0; /* Space above and below pagination */
+            padding: 12px 18px; /* Increased padding for better touch targets */
+        }
+
+        .rent_result_pagination button {
+            background-color: #d1cebc; /* Button color */
+            color: white; /* Text color */
+            border: none; /* No border */
+            padding: 10px 15px; /* Button padding */
+            margin: 5px; /* Margin between buttons */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth background transition */
+            min-width: 80px; /* Minimum width for consistency */
+        }
+
+        .rent_result_pagination button.active {
+            background-color: #b6a895;
+            font-weight: bold;
+        }
+
+        .rent_result_pagination button:hover {
+            background-color: #b6a895; /* Hover color */
+        }
+
+        .rent_result_pagination .disabled {
+            background-color: #ccc; /* Gray color for disabled buttons */
+            color: #666; /* Darker gray for text on disabled buttons */
+            cursor: not-allowed; /* Change cursor for disabled buttons */
+        }
+
+        /* Styles for pagination controls */
+        .rent_result_pagination .control-button {
+            min-width: 60px; /* Minimum width for control buttons */
+            padding: 10px; /* Consistent padding for control buttons */
+        }
+
+        /* Optional: Style for no results message */
+        .rent_result_no-results {
+            text-align: center; /* Center text for no results */
+            color: #999; /* Grey color for no results */
+            font-size: 18px; /* Font size for no results */
+        }
+
+        /* New Styles for Improved User Experience */
+        .rent_result_property-result:focus {
+            outline: none; /* Remove default outline */
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Custom outline for focus state */
+        }
+
+        .rent_result_property-details .rent_result_property-title::after {
+            content: ' ➜'; /* Arrow indicator for clickability */
+            font-size: 14px; /* Adjust size */
+            color: #4b2f1b; /* Match title color */
+            transition: transform 0.2s; /* Transition for hover effect */
+        }
+
+        .rent_result_property-details .rent_result_property-title:hover::after {
+            transform: translateX(2px); /* Move arrow on hover */
+        }
+
+
+
+        /* Rent Property Image Grid */
+        .rent_result_image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .rent_result_property-image {
+            width: 100%; /* Adjust the width as needed */
+            height: 100%; /* Adjust the height as needed */
+            object-fit: fill;
+        }
+
+        .rent_result_grid-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center; /* Distribute space between items */
+        }
+
+        .rent_detailed_image-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .rent_result_grid-wrapper .rent_detailed_image-container {
+            flex: 1 1 48%; /* Ensure each image container takes up 48% of the width */
+            max-width: 48%; /* Prevent images from being too wide */
+            margin-bottom: 10px; /* Add some space at the bottom of each row */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rent_result_grid-wrapper .single-image {
+            flex: 1 1 100%; /* If it's the last odd image, it takes full width */
+            max-width: 60%;
+            display: flex;
+            justify-content: center; /* Center the last image */
+            align-items: center;
+        }
+
+       
+
+    </style>
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <main id="content">
+        <!-- Main Content -->
+        <div class="for_rent_body">
+            <!-- Image Section with Search Bar Overlay -->
+            <section class="for_rent_image_container">
+                <div class="for_rent_search_overlay">
+                    <select id="locality" name="locality" required class="search_full_width">
+                        <option value="">Select Locality </option>
+                        <option value="Ghaffar Manzil">Ghaffar Manzil</option>
+                        <option value="Haji Colony">Haji Colony</option>
+                        <option value="Johri Farm">Johri Farm</option>
+                        <option value="Noor Nagar">Noor Nagar</option>
+                        <option value="Okhla Vihar">Okhla Vihar</option>
+                        <option value="Shaheen Bagh">Shaheen Bagh</option>
+                        <option value="Abu Fazal Enclave">Abu Fazal Enclave</option>
+                        <option value="Joga Bai Extn">Joga Bai Extn</option>
+                        <option value="Ghafoor Nagar">Ghafoor Nagar</option>
+                        <option value="Zakir Nagar">Zakir Nagar</option>
+                        <option value="Batla House Chowk">Batla House Chowk</option>
+                        <option value="Khaliullah Masjid">Khaliullah Masjid</option>
+                        <option value="Pahalwan Chowk">Pahalwan Chowk</option>
+                        <option value="Jasola Vihar">Jasola Vihar</option>
+                        <option value="Sukhdev Vihar">Sukhdev Vihar</option>
+                        <option value="Julena">Julena</option>
+                        <option value="New Friends Colony">New Friends Colony</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <div class="search_row">
+                        <select id="property_type" name="property_type" class="for_rent_search_select">
+                            <option value="">Property Type</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="villa">Villa</option>
+                        </select>
+                        <select id="number_of_bedrooms" name="number_of_bedrooms" class="for_rent_search_select">
+                            <option value="">Number of Bedrooms</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">5+</option>
+                        </select>
+                        <input type="text" id="monthly_price" name="monthly_price" placeholder="Max Price" class="for_rent_search_input">
+                    </div>
+                    <button id="search-button" class="search_full_width search_button">Search</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+    <div id="footer"></div>
+
+
+</body>
+</html>

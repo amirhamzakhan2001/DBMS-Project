@@ -1,0 +1,33 @@
+<div class="header-container">
+    <div class="logo-container">
+        <a href="#" class="nav-link" data-page="index.html">
+            <img src="https://ik.imagekit.io/fyhproject/fyhproject_image/logo.webp?updatedAt=1729337437651" alt="Logo" class="logo" />
+        </a>
+    </div>
+    <div class="website-name-container">
+        <img src="https://ik.imagekit.io/fyhproject/fyhproject_image/website-name.webp?updatedAt=1729337443474" alt="name" class="website-name-image" />
+    </div>
+    <nav class="header-buttons">
+        <a href="#download" class="download-button">Download Mobile App</a>
+        
+        <!-- Login Dropdown -->
+        <div class="login-container" id="loginDropdown">
+            <button class="login-button">Login</button>
+            <div class="dropdown-content">
+                <a href="#" class="nav-link" data-page="admin_login.html">Admin Login</a>
+                <!-- <a href="#" class="nav-link" data-page="owner_login.html">Owner Login</a> -->
+                <a href="#" class="nav-link" data-page="client_login.html">Client Login</a>
+            </div>
+        </div>
+        
+        <!-- Profile Dropdown (only visible when logged in) -->
+        <div class="profile-container" id="profileDropdown" style="display: none;">
+            <img src="https://ik.imagekit.io/fyhproject/fyhproject_image/profile-user.webp?updatedAt=1730362286315" title="profile-avatar" alt="Profile" class="profile-avatar" id="profileAvatar" >
+            <div class="dropdown-content">
+                <a href="#" class="nav-link" data-page="profile.html">Profile</a>
+                <a href="#" class="nav-link" data-page="change_password.html">Change Password</a>
+                <a href="#" id="logoutButton">Logout</a>
+            </div>
+        </div>
+    </nav>
+</div>

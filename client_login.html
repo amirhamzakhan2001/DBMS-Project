@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Login | Find Your Home</title>
+    <link rel="stylesheet" href="styles/styles.css"> 
+    <script src="scripts/script.js" defer></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <main id="content">
+        <div class="client_middle-section">
+            <div class="client_container" id="client_container">
+                <!-- Register form -->
+                <div class="client_form-container client_sign-up">
+                    <form id="registerForm">
+                        <h1>Create Client Account</h1>
+                        <div class="client_social-icons">
+                            <a href="#" class="owner_icon"><img src="https://ik.imagekit.io/fyhproject/fyhproject_image/gmail-icon.webp?updatedAt=1729337433374" alt="Gmail" /></a>
+                            <a href="#" class="owner_icon"><img src="https://ik.imagekit.io/fyhproject/fyhproject_image/facebook.webp?updatedAt=1729337433408" alt="Facebook" /></a>
+                            <a href="#" class="owner_icon"><img src="https://ik.imagekit.io/fyhproject/fyhproject_image/github-icon.webp?updatedAt=1729337433441" alt="GitHub" /></a>
+                            <a href="#" class="owner_icon"><img src="https://ik.imagekit.io/fyhproject/fyhproject_image/linkedin.webp?updatedAt=1729337436413" alt="LinkedIn" /></a>
+                        </div>
+                        <span>or use your email for registration</span>
+                        <input type="text" name="full_name" id="full_name" placeholder="Name" required>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+
+                <!-- Sign in form -->
+                <div class="client_form-container client_sign-in">
+                    <form id="loginForm">
+                        <h1>Client Sign In</h1>
+                        <div class="client_social-icons">
+                            <a href="#" class="owner_icon"><img src="https://ik.imagekit.io/fyhproject/fyhproject_image/gmail-icon.webp?updatedAt=1729337433374" alt="Gmail" /></a>
+                            <a href="#" class="owner_icon"><img src="https://ik.imagekit.io/fyhproject/fyhproject_image/facebook.webp?updatedAt=1729337433408" alt="Facebook" /></a>
+                            <a href="#" class="owner_icon"><img src="https://ik.imagekit.io/fyhproject/fyhproject_image/github-icon.webp?updatedAt=1729337433441" alt="GitHub" /></a>
+                            <a href="#" class="owner_icon"><img src="https://ik.imagekit.io/fyhproject/fyhproject_image/linkedin.webp?updatedAt=1729337436413" alt="LinkedIn" /></a>
+                        </div>
+                        <span>or use your email password</span>
+                        <input type="email" id="login_email" placeholder="Email" required>
+                        <input type="password" id="login_password" placeholder="Password" required>
+                        <a href="#">Forgot Your Password?</a>
+                        <button type="submit">Sign In</button>
+                    </form>
+                </div>
+
+                <!-- Error Message Container -->
+                <div id="error-message" style="color: red;"></div>
+
+                <!-- Toggle Buttons -->
+                <div class="client_toggle-container">
+                    <div class="client_toggle">
+                        <div class="client_toggle-panel client_toggle-left">
+                            <h1>Welcome Back!</h1>
+                            <p>Enter your personal details to use all of site features</p>
+                            <button class="client_hidden" id="client_login">Sign In</button>
+                        </div>
+                        <div class="client_toggle-panel client_toggle-right">
+                            <h1>Hello, Friend!</h1>
+                            <p>Register with your personal details to use all of site features</p>
+                            <button class="client_hidden" id="client_register">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+</body>
+
+</html>

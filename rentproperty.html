@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Your Property for Rent</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/script.js" defer></script>
+    <style>
+        .error {
+            border: 2px solid red; /* Change the border color to red for errors */
+        }
+
+        .error-message {
+            color: red; /* Error message color */
+            font-size: 0.9em; /* Adjust font size as needed */
+            margin-left: 5px; /* Space between field and message */
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="header"></div>
+
+
+    <main id="content">
+
+        <section class="rentproperty_body">
+            <div class="rentproperty_container">
+                <form id="rentproperty-form" class="rentproperty_form" enctype="multipart/form-data" style="opacity: 0.9;">
+                    <h2 class="rentproperty_title">List Your Property for Rent or Co-Sharing</h2>
+
+                    <label for="property-title" class="custom-label">Property Title<span class="required">*</span>:</label>
+                    <input type="text" id="property-title" name="property_title" required class="rentproperty_input">
+
+                    <label for="property-type" class="custom-label">Property Type<span class="required">*</span>:</label>
+                    <select id="property-type" name="property_type" required class="rentproperty_select">
+                        <option value="">Select Type</option>
+                        <option value="House">House</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Shared Room">Shared Room</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="monthly_price" class="custom-label">Monthly Rent Price<span class="required">*</span>:</label>
+                    <input type="number" id="monthly_price" name="monthly_price" required class="rentproperty_input">
+
+
+                    <!-- Locality -->
+                    <label for="locality" class="custom-label">Locality<span class="required">*</span>:</label>
+                    <select id="locality" name="locality" required class="sellproperty_select">
+                        <option value="">Select Locality </option>
+                        <option value="Ghaffar Manzil">Ghaffar Manzil</option>
+                        <option value="Haji Colony">Haji Colony</option>
+                        <option value="Johri Farm">Johri Farm</option>
+                        <option value="Noor Nagar">Noor Nagar</option>
+                        <option value="Okhla Vihar">Okhla Vihar</option>
+                        <option value="Shaheen Bagh">Shaheen Bagh</option>
+                        <option value="Abu Fazal Enclave">Abu Fazal Enclave</option>
+                        <option value="Joga Bai Extn">Joga Bai Extn</option>
+                        <option value="Ghafoor Nagar">Ghafoor Nagar</option>
+                        <option value="Zakir Nagar">Zakir Nagar</option>
+                        <option value="Batla House Chowk">Batla House Chowk</option>
+                        <option value="Khaliullah Masjid">Khaliullah Masjid</option>
+                        <option value="Pahalwan Chowk">Pahalwan Chowk</option>
+                        <option value="Jasola Vihar">Jasola Vihar</option>
+                        <option value="Sukhdev Vihar">Sukhdev Vihar</option>
+                        <option value="Julena">Julena</option>
+                        <option value="New Friends Colony">New Friends Colony</option>
+                        <option value="Others">Others</option>
+                    </select>
+
+
+
+                    <label for="location" class="custom-label">Location/Address<span class="required">*</span>:</label>
+                    <input type="text" id="location" name="location" required class="rentproperty_input">
+
+                    <label for="area" class="custom-label">Area (Square Footage)<span class="required">*</span>:</label>
+                    <input type="number" id="area" name="area" required class="rentproperty_input">
+
+                    <div class="rentproperty_number_container">
+                        <label for="bedrooms" class="custom-label">Number of Bedrooms<span class="required">*</span>:</label>
+                        <div class="rentproperty_number_select">
+
+                            <input type="radio" id="bedroom-1" name="number_of_bedrooms" value="1">
+                            <label for="bedroom-1" class="custom-label">1</label>
+
+                            <input type="radio" id="bedroom-2" name="number_of_bedrooms" value="2">
+                            <label for="bedroom-2" class="custom-label">2</label>
+
+                            <input type="radio" id="bedroom-3" name="number_of_bedrooms" value="3">
+                            <label for="bedroom-3" class="custom-label">3</label>
+
+                            <input type="radio" id="bedroom-4" name="number_of_bedrooms" value="4">
+                            <label for="bedroom-4" class="custom-label">4</label>
+
+                            <input type="radio" id="bedroom-5" name="number_of_bedrooms" value="5">
+                            <label for="bedroom-5" class="custom-label">5</label>
+
+                            <input type="radio" id="bedroom-6" name="number_of_bedrooms" value="6">
+                            <label for="bedroom-6" class="custom-label">5+</label>
+
+                        </div>
+                    </div>
+
+                    <div class="rentproperty_number_container">
+                        <label for="bathrooms" class="custom-label">Number of Bathrooms<span class="required">*</span>:</label>
+                        <div class="rentproperty_number_select">
+
+                            <input type="radio" id="bathroom-1" name="number_of_bathrooms" value="1">
+                            <label for="bathroom-1" class="custom-label">1</label>
+
+                            <input type="radio" id="bathroom-2" name="number_of_bathrooms" value="2">
+                            <label for="bathroom-2" class="custom-label">2</label>
+
+                            <input type="radio" id="bathroom-3" name="number_of_bathrooms" value="3">
+                            <label for="bathroom-3" class="custom-label">3</label>
+
+                            <input type="radio" id="bathroom-4" name="number_of_bathrooms" value="4">
+                            <label for="bathroom-4" class="custom-label">4</label>
+
+                            <input type="radio" id="bathroom-5" name="number_of_bathrooms" value="5">
+                            <label for="bathroom-5" class="custom-label">5</label>
+
+                            <input type="radio" id="bathroom-6" name="number_of_bathrooms" value="6">
+                            <label for="bathroom-6" class="custom-label">5+</label>
+                        </div>
+                    </div>
+
+                    <div class="rentproperty_number_container">
+                        <label for="balconies" class="custom-label">Number of Balconies:</label>
+                        <div class="rentproperty_number_select">
+                            <input type="radio" id="balcony-0" name="number_of_balconies" value="0">
+                            <label for="balcony-0" class="custom-label">0</label>
+
+                            <input type="radio" id="balcony-1" name="number_of_balconies" value="1">
+                            <label for="balcony-1" class="custom-label">1</label>
+
+                            <input type="radio" id="balcony-2" name="number_of_balconies" value="2">
+                            <label for="balcony-2" class="custom-label">2</label>
+
+                            <input type="radio" id="balcony-3" name="number_of_balconies" value="3">
+                            <label for="balcony-3" class="custom-label">3</label>
+
+                            <input type="radio" id="balcony-4" name="number_of_balconies" value="4">
+                            <label for="balcony-4" class="custom-label">4</label>
+
+                            <input type="radio" id="balcony-5" name="number_of_balconies" value="5">
+                            <label for="balcony-5" class="custom-label">4+</label>
+                        </div>
+                    </div>
+
+                    <label for="year-built" class="custom-label">Year Built:</label>
+                    <select id="year-built" name="year_built" class="rentproperty_select">
+                        <option value="">Select Year</option>
+                    </select>
+
+                    <label for="property-condition" class="custom-label">Property Condition<span class="required">*</span>:</label>
+                    <select id="property-condition" name="property_condition" class="rentproperty_select">
+                        <option value="">Select Type</option>
+                        <option value="new">New</option>
+                        <option value="like_new">Like New</option>
+                        <option value="renovated">Renovated</option>
+                        <option value="requires_renovation">Requires Renovation</option>
+                        <option value="old_but_gold">Old but Gold</option>
+                    </select>
+
+                    <label for="parking-spaces" class="custom-label">Parking Spaces:</label>
+                    <input type="number" id="parking-spaces" name="parking_spaces" min="0" class="rentproperty_input">
+
+                    <label for="amenities" class="custom-label">Amenities:</label>
+                    <textarea id="amenities" name="amenities" placeholder="Enter amenities separated by commas..." class="rentproperty_textarea"></textarea>
+
+                    <label for="furnished" class="custom-label">Furnished/Unfurnished:</label>
+                    <select id="furnished" name="furnished" class="rentproperty_select">
+                        <option value="">Select Type</option>
+                        <option value="furnished">Furnished</option>
+                        <option value="semifurnished">Semi-furnished</option>
+                        <option value="unfurnished">Unfurnished</option>
+                    </select>
+
+                    <label for="utilities" class="custom-label">Utilities Included<span class="required">*</span>:</label>
+                    <textarea id="utilities" name="utilities_included" placeholder="Enter utilities included...(separated by commas)" class="rentproperty_textarea"></textarea>
+
+                    <label for="floor-number" class="custom-label">Floor Number:</label>
+                    <input type="number" id="floor-number" name="floor_number" min="0" class="rentproperty_input">
+
+                    <label for="description" class="custom-label">Description<span class="required">*</span>:</label>
+                    <textarea id="description" name="description" required class="rentproperty_textarea"></textarea>
+
+                    <label for="photos" class="custom-label">Upload Photos (at least 3):<span class="required">*</span></label>
+                    <input type="file" id="photos" name="photos" multiple accept="image/*" required class="rentproperty_input">
+
+                    <label for="video-tour" class="custom-label">Video Tour Link:</label>
+                    <input type="url" id="video-tour" name="video_tour" class="rentproperty_input">
+
+                    <label for="landlord-name" class="custom-label">Landlord's Name<span class="required">*</span>:</label>
+                    <input type="text" id="landlord-name" name="landlord_name" required class="rentproperty_input">
+
+                    <label for="contact-number" class="custom-label">Contact Number<span class="required">*</span>:</label>
+                    <input type="tel" id="contact-number" name="contact_number" required class="rentproperty_input">
+
+                    <label for="email" class="custom-label">Email Address<span class="required">*</span>:</label>
+                    <input type="email" id="email" name="email_address" required class="rentproperty_input">
+
+                    <label for="preferred-contact" class="custom-label">Preferred Contact Method:</label>
+                    <select id="preferred-contact" name="preferred_contact" class="rentproperty_select">
+                        <option value="phone">Phone</option>
+                        <option value="email">Email</option>
+                        <option value="whatsapp">WhatsApp</option>
+                    </select>
+
+                <label for="notes" class="custom-label">Additional Notes:</label>
+                    <textarea id="notes" name="additional_notes" class="sellproperty_textarea"></textarea>
+
+                    <button type="submit" class="rentproperty_button">Submit Listing</button>
+                </form>
+            </div>
+        </select>
+    </main>
+
+    <div id="footer"></div>
+
+
+
+
+</body>
+</html>

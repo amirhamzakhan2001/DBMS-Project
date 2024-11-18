@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy and Sell Property | Find Your Home</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/script.js" defer></script>
+</head>
+<body>
+
+    <div id="header"></div>
+    <main id="content">
+
+        <div class="buy_sell_body">
+            <section class="buy_sell_property-section buy_sell_fade-in" id="sell-property">
+                <div class="buy_sell_image-container">
+                    <img src="https://ik.imagekit.io/fyhproject/fyhproject_image/sellproperty.webp?updatedAt=1729337439935" alt="Sell Property" class="buy_sell_full-width-image">
+                    <div class="buy_sell_overlay-text">
+                        <a href="#" class="nav-link buy_sell_btn-cta" data-page="sellproperty.html">List your property to sell</a>
+                    </div>
+                </div>
+
+                <div class="buy_sell_text-content">
+                    <h2>Sell Your House: Letting Go of More Than Just a Home</h2>
+                    <p>
+                        Selling your home can be an emotional journey. It's not just about parting with bricks and mortar; it's about leaving behind the memories that make a house feel like home. Every corner might carry a story—whether it’s the kitchen where family meals were shared, the living room where laughter echoed, or the garden where kids once played.
+                    </p>
+                    <p>
+                        We understand that selling your house means saying goodbye to a part of your life. Whether you’re downsizing, relocating, or simply moving on, we’re here to make the process as smooth as possible, honoring the emotional weight that comes with this decision. Letting go can be hard, but it’s also the first step toward new beginnings, and we’ll be with you every step of the way.
+                    </p>
+                </div>
+            </section>
+
+            <section class="buy_sell_property-section buy_sell_fade-in" id="buy-property">
+                <div class="buy_sell_image-container">
+                    <img src="https://ik.imagekit.io/fyhproject/fyhproject_image/buyproperty.webp?updatedAt=1729337431527" alt="Buy Property" class="buy_sell_full-width-image">
+                    <div class="buy_sell_overlay-text">
+                        <a href="#" class="nav-link buy_sell_btn-cta" data-page="buy_property.html">Search the property you want to buy</a>
+                    </div>
+                </div>
+
+                <div class="buy_sell_text-content">
+                    <h2>Buy Your New House: Building New Memories</h2>
+                    <p>
+                        As one chapter closes, another begins. Buying a new home is a fresh start, an opportunity to build new memories and experiences. It's not just about finding the perfect space but envisioning what your future looks like there—the celebrations, the quiet moments, and everything in between.
+                    </p>
+                    <p>
+                        We believe a home should feel like a sanctuary. That's why we're committed to helping you find a place where you can make new memories that will last a lifetime. Whether it's your first home or a place to grow old in, your new home is waiting to be filled with love, laughter, and cherished moments.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+
+    <div id="footer"></div>
+
+
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll('.buy_sell_property-section');
+        sections.forEach(section => {
+            section.classList.add('buy_sell_fade-in');
+        });
+    });
+
+    </script>
+
+
+</body>
+</html>

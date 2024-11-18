@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Services- Find Your Home</title>
+
+    <!-- Font Awesome for icons -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+    <!-- Google Fonts (Lato) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <!-- Link to your styles.css file -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/script.js" defer></script>
+
+    <style>
+
+        #searchResults {
+            background-color: #ede7d5; /* Change to desired color */
+            padding: 20px; /* Padding for the container */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, padding 0.3s; /* Smooth transitions */
+        }
+
+        .service_worker_result {
+            display: flex;
+            margin-top: 20px;
+            height: 300px;
+            background-color: #d1cebc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .service_worker_image {
+            flex: 0 0 35%; /* 35% width for the image container */
+            margin-right: 10px; /* Space between image and details */
+        }
+
+        .service_worker_image img {
+            width: 100%; /* Ensure image fits the container */
+            height: 100%;           /* Ensures image height fits container */
+            border-radius: 5px;
+        }
+
+        .service_worker_details {
+            flex: 1; /* Remaining 65% for details */
+            display: flex;
+            margin-left: 20px;
+            flex-direction: column; /* Stack details vertically */
+        }
+
+        .service_worker_name {
+            margin: 0; /* Remove default margin */
+            color: #4b2f1b; /* Different color for title */
+            font-family: 'brush script mt', cursive;
+            font-size: 36px;
+            font-weight: bold; /* Bold for emphasis */
+        }
+
+        .service_worker_details p {
+            font-size: 18px; /* Description font size */
+            color: #4b2f1b; /* Description color */
+            margin: 5px 0; /* Margin for paragraphs */
+            font-family: 'Bradley Hand', cursive;
+        }
+
+        .rent_result_pagination {
+            display: flex;
+            justify-content: center; /* Center pagination */
+            margin-top: 20px; /* Space above pagination */
+        }
+
+        .control-button,
+        .page-button {
+            padding: 10px 15px; /* Padding for buttons */
+            margin: 0 5px; /* Space between buttons */
+            border: none; /* Remove default border */
+            background-color: #007BFF; /* Button background color */
+            color: white; /* Button text color */
+            cursor: pointer; /* Pointer on hover */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth background change */
+        }
+
+        .control-button:disabled {
+            background-color: #ccc; /* Grey background for disabled */
+            cursor: not-allowed; /* Not allowed cursor */
+        }
+
+        .page-button.active {
+            background-color: #0056b3; /* Darker blue for active page */
+        }
+
+        .control-button:hover,
+        .page-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Pagination Styles */
+        .rent_result_pagination {
+            display: flex; /* Flexbox for pagination buttons */
+            justify-content: center; /* Center pagination */
+            margin: 20px 0; /* Space above and below pagination */
+            padding: 12px 18px; /* Increased padding for better touch targets */
+        }
+
+        .rent_result_pagination button {
+            background-color: #d1cebc; /* Button color */
+            color: white; /* Text color */
+            border: none; /* No border */
+            padding: 10px 15px; /* Button padding */
+            margin: 5px; /* Margin between buttons */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth background transition */
+            min-width: 80px; /* Minimum width for consistency */
+        }
+
+        .rent_result_pagination button.active {
+            background-color: #b6a895;
+            font-weight: bold;
+        }
+
+        .rent_result_pagination button:hover {
+            background-color: #b6a895; /* Hover color */
+        }
+
+        .rent_result_pagination .disabled {
+            background-color: #ccc; /* Gray color for disabled buttons */
+            color: #666; /* Darker gray for text on disabled buttons */
+            cursor: not-allowed; /* Change cursor for disabled buttons */
+        }
+
+        /* Styles for pagination controls */
+        .rent_result_pagination .control-button {
+            min-width: 60px; /* Minimum width for control buttons */
+            padding: 10px; /* Consistent padding for control buttons */
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <main id="content">
+
+        <!-- Image Section with Text Overlay -->
+        <section class="home_service_image-section">
+            <img src="https://ik.imagekit.io/fyhproject/fyhproject_image/services.webp?updatedAt=1729337439807" alt="Home Services Image">
+            <div class="home_service_overlay-text">Home Services</div>
+        </section>
+
+        <!-- Search Bar Section -->
+        <section class="home_service_search-section">
+            <div class="home_service_search-text-container">
+                <p class="home_service_search-text">You can upload the details of workers for the services below</p>
+                <a href="#" class="open-form-link" id="openModal">+ Add Worker Details</a>
+            </div>
+            <div class="home_service_search-text-container">
+                <p class="home_service_search-text">You can search the details of workers for the services you want by clicking the search button below.</p>
+            </div>
+            <div class="home_service_search-container">
+                <select id="locality" name="locality" required class="home_service_search-dropdown">
+                    <option value="">Select Locality </option>
+                    <option value="Ghaffar Manzil">Ghaffar Manzil</option>
+                    <option value="Haji Colony">Haji Colony</option>
+                    <option value="Johri Farm">Johri Farm</option>
+                    <option value="Noor Nagar">Noor Nagar</option>
+                    <option value="Okhla Vihar">Okhla Vihar</option>
+                    <option value="Shaheen Bagh">Shaheen Bagh</option>
+                    <option value="Abu Fazal Enclave">Abu Fazal Enclave</option>
+                    <option value="Joga Bai Extn">Joga Bai Extn</option>
+                    <option value="Ghafoor Nagar">Ghafoor Nagar</option>
+                    <option value="Zakir Nagar">Zakir Nagar</option>
+                    <option value="Batla House Chowk">Batla House Chowk</option>
+                    <option value="Khaliullah Masjid">Khaliullah Masjid</option>
+                    <option value="Pahalwan Chowk">Pahalwan Chowk</option>
+                    <option value="Jasola Vihar">Jasola Vihar</option>
+                    <option value="Sukhdev Vihar">Sukhdev Vihar</option>
+                    <option value="Julena">Julena</option>
+                    <option value="New Friends Colony">New Friends Colony</option>
+                    <option value="Others">Others</option>
+                </select>
+                <input type="text" id="searchInput" name="search" placeholder="Input the Service type to search..." class="home_service_search-input">
+                <button id="searchButton" class="home_service_search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Search results will appear here -->
+        <div id="searchResults"></div>
+
+        <section class="home_service_description-section">
+            <h2>We provide detailed information about skilled workers who can assist with various tasks in your home.</h2>
+            <p>Whether you need a plumber, carpenter, painter, electrician, cook, cleaner, or outdoor worker, we've got you covered. These professionals specialize in the day-to-day maintenance and small jobs that help keep your home running smoothly.</p>
+            <p>Our platform offers detailed profiles of workers for the following services:</p>
+            <ul class="home_service_service-list">
+                <li><i class="fas fa-wrench"></i>Plumber: For plumbing repairs, installations, and maintenance.</li>
+                <li><i class="fas fa-hammer"></i>Carpenter: Skilled in woodwork, furniture repair, and home improvements.</li>
+                <li><i class="fas fa-paint-roller"></i>Painter: For interior and exterior painting, touch-ups, and more.</li>
+                <li><i class="fas fa-bolt"></i>Electrician: For electrical repairs, installations, and upgrades.</li>
+                <li><i class="fas fa-utensils"></i>Cook: Offering meal preparation and cooking services to suit your needs.</li>
+                <li><i class="fas fa-broom"></i>Cleaner: Providing regular cleaning, deep cleaning, and housekeeping services.</li>
+                <li><i class="fas fa-seedling"></i>Outdoor Worker: For lawn care, gardening, and outdoor maintenance.</li>
+            </ul>
+            <p>You can easily search for these professionals based on your location and contact them directly to get the job done efficiently. Whether it’s a quick repair, routine maintenance, or extra help around the house, you’ll find the right person nearby to assist you.</p>
+        </section>
+
+
+        <!-- modal for form filling -->
+        <div class="worker-form-modal" id="workerFormModal" style="display: none;">
+            <div class="worker-form-content">
+                <span class="close-modal">&times;</span>
+                <h3>Add Worker Details</h3>
+                <form id="workerForm">
+                    <label for="full_name">Full Name</label>
+                    <input type="text" id="full_name" name="full_name" required maxlength="100">
+                    
+                    <label for="service_type">Service Type</label>
+                    <select id="service_type" name="service_type" required>
+                        <option value="">Select Service Type</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="Carpenter">Carpenter</option>
+                        <option value="Painter">Painter</option>
+                        <option value="Electrician">Electrician</option>
+                        <option value="Cook">Cook</option>
+                        <option value="Cleaner">Cleaner</option>
+                        <option value="Outdoor Worker">Outdoor Worker</option>
+                    </select>
+                    
+                    <label for="phone_number">Phone Number</label>
+                    <input type="text" id="phone_number" name="phone_number" required maxlength="20">
+                    
+                    <label for="locality">Locality</label>
+                    <select id="locality" name="locality" required class="home_service_search-dropdown">
+                        <option value="">Select Locality</option>
+                        <option value="Ghaffar Manzil">Ghaffar Manzil</option>
+                        <option value="Haji Colony">Haji Colony</option>
+                        <option value="Johri Farm">Johri Farm</option>
+                        <option value="Noor Nagar">Noor Nagar</option>
+                        <option value="Okhla Vihar">Okhla Vihar</option>
+                        <option value="Shaheen Bagh">Shaheen Bagh</option>
+                        <option value="Abu Fazal Enclave">Abu Fazal Enclave</option>
+                        <option value="Joga Bai Extn">Joga Bai Extn</option>
+                        <option value="Ghafoor Nagar">Ghafoor Nagar</option>
+                        <option value="Zakir Nagar">Zakir Nagar</option>
+                        <option value="Batla House Chowk">Batla House Chowk</option>
+                        <option value="Khaliullah Masjid">Khaliullah Masjid</option>
+                        <option value="Pahalwan Chowk">Pahalwan Chowk</option>
+                        <option value="Jasola Vihar">Jasola Vihar</option>
+                        <option value="Sukhdev Vihar">Sukhdev Vihar</option>
+                        <option value="Julena">Julena</option>
+                        <option value="New Friends Colony">New Friends Colony</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    
+                    <label for="availability">Availability</label>
+                    <input type="text" id="availability" name="availability" required maxlength="100">
+                    
+                    <label for="rate">Rate</label>
+                    <input type="number" id="rate" name="rate" step="0.01">
+                    
+                    <label for="years_of_experience">Years of Experience</label>
+                    <input type="number" id="years_of_experience" name="years_of_experience" min="0">
+                    
+                    <!-- Profile Picture Upload Section -->
+                    <label for="profile_picture">Profile Picture</label>
+                    <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                    
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        
+
+
+    </main>
+
+
+
+    <div id="footer"></div>
+
+
+
+
+</body>
+</html>
