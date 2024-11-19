@@ -39,7 +39,57 @@ This project allows users to perform the following tasks:
 ## Project Structure
 
 ### Root Folder: FindYourHome
-```FindYourHome/ │ ├── backend/ │ ├── node_modules/ # Node.js dependencies │ ├── routes/ # Backend API routes │ │ ├── admin.js │ │ ├── admindashboardroutes.js │ │ ├── buypropertyroutes.js │ │ ├── client.js │ │ ├── forrentpropertyroutes.js │ │ ├── homeServicesroutes.js │ │ ├── rentform.js │ │ └── sellform.js │ ├── uploads/ # File uploads (images/documents) │ │ ├── documents/ │ │ ├── photos/ │ │ └── profile_pics/ │ ├── .env # Environment variables │ ├── app.js # Main backend server file │ ├── db.js # Database connection setup │ ├── package.json # Node.js dependencies │ └── package-lock.json │ ├── scripts/ # JavaScript files for frontend functionality │ ├── admin_dashboard.js │ ├── admin_login.js │ ├── buy_property.js │ ├── client_login.js │ ├── for_rent.js │ ├── home_services.js │ ├── rentproperty.js │ ├── script.js │ └── sellproperty.js │ ├── styles/ # Stylesheets │ └── styles.css │ ├── aboutus.html # About Us page ├── admin_dashboard.html # Admin Dashboard page ├── admin_login.html # Admin Login page ├── buy_property.html # Buy Property page ├── buy_sell.html # Buy/Sell page ├── client_login.html # Client Login page ├── footer.html # Footer template ├── for_rent.html # For Rent page ├── header.html # Header template ├── home_services.html # Home Services page ├── index.html # Homepage ├── privacypolicy.html # Privacy Policy page ├── rent_cosharing.html # Rent Co-Sharing page ├── rentproperty.html # Rent Property page ├── sellproperty.html # Sell Property page └── termscondition.html # Terms & Conditions page```
+```
+FindYourHome/
+├── backend/
+│   ├── node_modules/              # Node.js dependencies
+│   ├── routes/                    # Backend API routes
+│   │   ├── admin.js
+│   │   ├── admindashboardroutes.js
+│   │   ├── buypropertyroutes.js
+│   │   ├── client.js
+│   │   ├── forrentpropertyroutes.js
+│   │   ├── homeServicesroutes.js
+│   │   ├── rentform.js
+│   │   └── sellform.js
+│   ├── uploads/                   # File uploads (images/documents)
+│   │   ├── documents/
+│   │   ├── photos/
+│   │   └── profile_pics/
+│   ├── .env                       # Environment variables
+│   ├── app.js                     # Main backend server file
+│   ├── db.js                      # Database connection setup
+│   ├── package.json               # Node.js dependencies
+│   └── package-lock.json
+├── scripts/                       # JavaScript files for frontend functionality
+│   ├── admin_dashboard.js
+│   ├── admin_login.js
+│   ├── buy_property.js
+│   ├── client_login.js
+│   ├── for_rent.js
+│   ├── home_services.js
+│   ├── rentproperty.js
+│   ├── script.js
+│   └── sellproperty.js
+├── styles/                        # Stylesheets
+│   └── styles.css
+├── aboutus.html                   # About Us page
+├── admin_dashboard.html           # Admin Dashboard page
+├── admin_login.html               # Admin Login page
+├── buy_property.html              # Buy Property page
+├── buy_sell.html                  # Buy/Sell page
+├── client_login.html              # Client Login page
+├── footer.html                    # Footer template
+├── for_rent.html                  # For Rent page
+├── header.html                    # Header template
+├── home_services.html             # Home Services page
+├── index.html                     # Homepage
+├── privacypolicy.html             # Privacy Policy page
+├── rent_cosharing.html            # Rent Co-Sharing page
+├── rentproperty.html              # Rent Property page
+├── sellproperty.html              # Sell Property page
+└── termscondition.html            # Terms & Conditions page
+```
 ---
 
 ## Database Setup
@@ -66,6 +116,7 @@ This project allows users to perform the following tasks:
 ---
 
 ##Tables structure and its feature in PostgreSql is 
+```
 CREATE TABLE admin_login (
     id SERIAL PRIMARY KEY,
     admin_name VARCHAR(255) NOT NULL,
@@ -172,7 +223,7 @@ CREATE TABLE client_profile (
     FOREIGN KEY (client_id) REFERENCES client_login(id) ON DELETE SET NULL
 ); 
 
-
+```
 ---
 
 ## Prerequisites
