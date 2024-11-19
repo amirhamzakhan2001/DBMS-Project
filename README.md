@@ -77,27 +77,22 @@ FindYourHome/
 ├── styles/                        # Stylesheets
 │   └── styles.css
 │
-├── HTML Files                     # Frontend pages
-│   ├── aboutus.html
-│   ├── admin_dashboard.html
-│   ├── admin_login.html
-│   ├── buy_property.html
-│   ├── buy_sell.html
-│   ├── client_login.html
-│   ├── footer.html
-│   ├── for_rent.html
-│   ├── header.html
-│   ├── home_services.html
-│   ├── index.html
-│   ├── privacypolicy.html
-│   ├── rent_cosharing.html
-│   ├── rentproperty.html
-│   ├── sellproperty.html
-│   └── termscondition.html
-│
-├── package.json                   # Project dependencies
-└── package-lock.json              # Lockfile for npm dependencies
-
+├── aboutus.html                   # About Us page
+├── admin_dashboard.html           # Admin Dashboard page
+├── admin_login.html               # Admin Login page
+├── buy_property.html              # Buy Property page
+├── buy_sell.html                  # Buy/Sell page
+├── client_login.html              # Client Login page
+├── footer.html                    # Footer template
+├── for_rent.html                  # For Rent page
+├── header.html                    # Header template
+├── home_services.html             # Home Services page
+├── index.html                     # Homepage
+├── privacypolicy.html             # Privacy Policy page
+├── rent_cosharing.html            # Rent Co-Sharing page
+├── rentproperty.html              # Rent Property page
+├── sellproperty.html              # Sell Property page
+└── termscondition.html            # Terms & Conditions page
 
 ---
 
