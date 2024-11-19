@@ -39,7 +39,8 @@ This project allows users to perform the following tasks:
 ## Project Structure
 
 ### Root Folder: FindYourHome
-'''FindYourHome/
+'''plaintext
+FindYourHome/
 │
 ├── backend/
 │   ├── node_modules/              # Node.js dependencies
