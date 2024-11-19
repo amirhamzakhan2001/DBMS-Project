@@ -238,17 +238,17 @@ Ensure the following are installed:
 ## Installation Guide
 
 ### Clone the Repository
-bash
+```
 git clone https://github.com/your-repo/FindYourHome.git
 cd FindYourHome
-
+```
 
 ### Install Dependencies
 Navigate to the backend folder and install dependencies:
-bash
+```
 cd backend
 npm install
-
+```
 
 ### Configure the Database
 1. Create a PostgreSQL database named FindYourHome.
@@ -256,20 +256,20 @@ npm install
 
 ### Set Environment Variables
 Create a .env file in the backend folder with the following:
-plaintext
+```
 DB_USER=your_database_user
 DB_PASSWORD=your_database_password
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=FindYourHome
-JWT_SECRET=your_jwt_secret
-
+SESSION_SECRET=fyhdbmsproject
+```
 
 ### Start the Backend Server
-bash
+```
 cd backend
 node app.js
-
+```
 
 ### Open Frontend
 1. Use any live server tool (e.g., VS Code Live Server) to open index.html.
